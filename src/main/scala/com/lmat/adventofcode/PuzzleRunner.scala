@@ -6,7 +6,8 @@ object PuzzleRunner extends App {
 
   def puzzleMap = Map(
     (2017, 1) -> year2017.Day01,
-    (2017, 2) -> year2017.Day02
+    (2017, 2) -> year2017.Day02,
+    (2017, 3) -> year2017.Day03
   )
 
   run(puzzleMap, year, day)
