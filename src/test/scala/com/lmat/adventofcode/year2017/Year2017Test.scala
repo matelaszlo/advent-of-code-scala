@@ -12,18 +12,16 @@ class Year2017Test extends FunSuite with TableDrivenPropertyChecks {
       (1,     1390,    1232),
       (2,     37923,   263),
       (3,     480,     349975),
-      (4,     325,     119)
+      (4,     325,     119),
+      (5,     339351,  24315397)
     )
 
   forAll(puzzles) { (day, part1, part2) =>
     val year = 2017
-    val (res1, res2) = puzzleMap(year, day).solve(resource(year, day))
 
     test(s"$year: Day $day - Part 1") {
+      val (res1, res2) = puzzleMap(year, day).solve(resource(year, day))
       assert(res1 == part1)
-    }
-
-    test(s"$year: Day $day - Part 2") {
       assert(res2 == part2)
     }
   }
