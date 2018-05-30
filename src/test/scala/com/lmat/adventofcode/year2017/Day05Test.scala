@@ -12,7 +12,7 @@ class Day05Test extends FunSuite with TableDrivenPropertyChecks {
       (Vector(0, 3, 0, 1, -3), 5)
     )
 
-  test("Day02 - Part 1") {
+  test("Day05 - Part 1") {
     forAll(offsets) { (offsets, steps) =>
       assert(part1(offsets) == steps)
     }
@@ -24,7 +24,7 @@ class Day05Test extends FunSuite with TableDrivenPropertyChecks {
       (Vector(0, 3, 0, 1, -3), 10)
     )
 
-  test("Day02 - Part 2") {
+  test("Day05 - Part 2") {
     forAll(offsets2) { (offsets, steps) =>
       assert(part2(offsets) == steps)
     }

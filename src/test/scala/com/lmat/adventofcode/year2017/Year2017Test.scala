@@ -8,13 +8,14 @@ class Year2017Test extends FunSuite with TableDrivenPropertyChecks {
 
   val puzzles =
     Table(
-      ("day", "part1", "part2"),
-      (1,     1390,    1232),
-      (2,     37923,   263),
-      (3,     480,     349975),
-      (4,     325,     119),
-      (5,     339351,  24315397),
-      (6,     12841,   8038)
+      ("day", "part1",  "part2"),
+      (1,     1390,     1232),
+      (2,     37923,    263),
+      (3,     480,      349975),
+      (4,     325,      119),
+      (5,     339351,   24315397),
+      (6,     12841,    8038),
+      (7,     "airlri", 1206)
     )
 
   forAll(puzzles) { (day, part1, part2) =>
