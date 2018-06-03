@@ -5,15 +5,16 @@ object PuzzleRunner extends App {
   val day  = args.lift(1).map(_.toInt).getOrElse(1)
 
   def puzzleMap = Map(
-    (2017, 1) -> year2017.Day01,
-    (2017, 2) -> year2017.Day02,
-    (2017, 3) -> year2017.Day03,
-    (2017, 4) -> year2017.Day04,
-    (2017, 5) -> year2017.Day05,
-    (2017, 6) -> year2017.Day06,
-    (2017, 7) -> year2017.Day07,
-    (2017, 8) -> year2017.Day08,
-    (2017, 9) -> year2017.Day09
+    (2017, 1)  -> year2017.Day01,
+    (2017, 2)  -> year2017.Day02,
+    (2017, 3)  -> year2017.Day03,
+    (2017, 4)  -> year2017.Day04,
+    (2017, 5)  -> year2017.Day05,
+    (2017, 6)  -> year2017.Day06,
+    (2017, 7)  -> year2017.Day07,
+    (2017, 8)  -> year2017.Day08,
+    (2017, 9)  -> year2017.Day09,
+    (2017, 10) -> year2017.Day10
   )
 
   run(puzzleMap, year, day)
