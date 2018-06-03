@@ -4,7 +4,7 @@ import com.lmat.adventofcode.year2017.Day10._
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day10Tests extends FunSuite with TableDrivenPropertyChecks {
+class Day10Test extends FunSuite with TableDrivenPropertyChecks {
 
   test("Day 10 - Part 1") {
     val hash = knotHashRound(initialState(5), Seq(3, 4, 1, 5))
