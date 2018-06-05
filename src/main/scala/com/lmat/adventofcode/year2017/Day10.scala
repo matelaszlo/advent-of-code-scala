@@ -9,7 +9,7 @@ object Day10 extends Puzzle[String, Int, String] {
   override def parse(resource: String): String =
     readResource(resource).head
 
-  val size = 256
+  val size   = 256
   val rounds = 64
 
   override def part1(lengths: String): Int =
