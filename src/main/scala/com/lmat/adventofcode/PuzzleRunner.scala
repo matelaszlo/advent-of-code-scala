@@ -21,14 +21,15 @@ object PuzzleRunner extends App {
     (2017, 14) -> year2017.Day14,
     (2017, 15) -> year2017.Day15,
     (2017, 16) -> year2017.Day16,
-    (2017, 17) -> year2017.Day17
+    (2017, 17) -> year2017.Day17,
+    (2017, 18) -> year2017.Day18
   )
 
   run(puzzleMap, year, day)
 
   def resource(year: Int, day: Int): String = s"$year/Day${"%02d".format(day)}.txt"
 
-  def run(puzzleMap: Map[(Int, Int), Puzzle[_, _, _]], year: Int, day: Int): Unit =
+  def run(puzzleMap: Map[(Int, Int), Puzzle[_, _, _, _]], year: Int, day: Int): Unit =
     puzzleMap.get(year, day) match {
       case None => println(s"Puzzle for Day $day (Year $year) is not yet solved!")
       case Some(puzzle) =>

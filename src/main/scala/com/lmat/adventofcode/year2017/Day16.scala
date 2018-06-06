@@ -1,15 +1,18 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.year2017.Day16Definitions._
 import com.lmat.util.Files.readResource
 import com.lmat.util.Sequences.{shiftRight, swap}
 
-sealed trait Move
-case class Spin(value: Int) extends Move
-case class Exchange(posA: Int, posB: Int) extends Move
-case class Partner(progA: Char, progB: Char) extends Move
+object Day16Definitions {
+  sealed trait Move
+  case class Spin(value: Int) extends Move
+  case class Exchange(posA: Int, posB: Int) extends Move
+  case class Partner(progA: Char, progB: Char) extends Move
+}
 
-object Day16 extends Puzzle[Seq[Move], String, String] {
+object Day16 extends SimplePuzzle[Seq[Move], String, String] {
   override def parse(resource: String): Seq[Move] =
     readResource(resource).head.split(",").flatMap(parseMove)
 

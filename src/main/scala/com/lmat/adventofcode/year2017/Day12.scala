@@ -1,11 +1,11 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimplePuzzle
 import com.lmat.util.Files.readResource
 
 import scala.annotation.tailrec
 
-object Day12 extends Puzzle[Map[Int, Set[Int]], Int, Int] {
+object Day12 extends SimplePuzzle[Map[Int, Set[Int]], Int, Int] {
   type ProgramMap = Map[Int, Set[Int]]
 
   override def parse(resource: String): ProgramMap = parseProgramMap(readResource(resource))

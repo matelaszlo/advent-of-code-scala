@@ -1,14 +1,17 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.year2017.Day08Definitions._
 import com.lmat.util.Files.readResource
 
 import scala.collection.Map
 
-case class Condition(register: String, comparison: String, amount: Int)
-case class Instruction(register: String, operation: String, amount: Int, condition: Condition)
+object Day08Definitions {
+  case class Condition(register: String, comparison: String, amount: Int)
+  case class Instruction(register: String, operation: String, amount: Int, condition: Condition)
+}
 
-object Day08 extends Puzzle[Seq[Instruction], Int, Int] {
+object Day08 extends SimplePuzzle[Seq[Instruction], Int, Int] {
   override def parse(resource: String): Seq[Instruction] =
     readResource(resource).map(parseInstruction)
 

@@ -1,12 +1,12 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimplePuzzle
 import com.lmat.util.Files.readResource
 import com.lmat.util.Strings.leftPad
 
 import scala.annotation.tailrec
 
-object Day15 extends Puzzle[(Long, Long), Long, Long] {
+object Day15 extends SimplePuzzle[(Long, Long), Long, Long] {
   override def parse(resource: String): (Long, Long) = {
     val starts = readResource(resource).map(_.split(" ").last)
     (starts.head.toLong, starts(1).toLong)

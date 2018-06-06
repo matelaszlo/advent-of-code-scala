@@ -1,19 +1,19 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
-import com.lmat.adventofcode.year2017.Day10.knotHash
+import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.year2017.Day10.{calculateLengths, knotHash}
 import com.lmat.util.Files.readResource
 import com.lmat.util.Strings.leftPad
 
 import scala.annotation.tailrec
 
-object Day14 extends Puzzle[String, Int, Int] {
+object Day14 extends SimplePuzzle[String, Int, Int] {
   override def parse(resource: String): String = readResource(resource).head
 
-  val hashSize   = 256
-  val hashRounds = 64
-  val hash       = knotHash(hashSize, hashRounds)(_)
-  val gridSize   = 128
+  val hashSize: Int           = 256
+  val hashRounds: Int         = 64
+  val hash: String => String  = input => knotHash(hashSize, hashRounds)(calculateLengths(input))
+  val gridSize:Int            = 128
 
   override def part1(key: String): Int =
     calculateGrid(gridSize, hash)(key).map(_.count(_ == '1')).sum

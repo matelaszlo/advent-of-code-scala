@@ -25,7 +25,7 @@ class Day10Test extends FunSuite with TableDrivenPropertyChecks {
 
   test("Day 10 - Part 2") {
     forAll(lengths) { (source, hash) =>
-      assert(part2(source) == hash)
+      assert(part2(calculateLengths(source)) == hash)
     }
   }
 

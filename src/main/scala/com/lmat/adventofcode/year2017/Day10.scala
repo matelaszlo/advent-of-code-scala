@@ -5,21 +5,22 @@ import com.lmat.util.Files.readResource
 import com.lmat.util.Sequences.{shiftLeft, shiftRight}
 import com.lmat.util.Strings.leftPad
 
-object Day10 extends Puzzle[String, Int, String] {
-  override def parse(resource: String): String =
-    readResource(resource).head
-
+object Day10 extends Puzzle[Seq[Int], Int, Seq[Int], String] {
   val size   = 256
   val rounds = 64
 
-  override def part1(lengths: String): Int =
-    knotHashRound(initialState(size), parseLengths(lengths))
+  override def parse1(resource: String): Seq[Int] = readResource(resource).head.split(",").map(_.toInt)
+
+  override def parse2(resource: String): Seq[Int] = calculateLengths(readResource(resource).head)
+
+  def calculateLengths(source:String): Seq[Int] =
+    source.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
+
+  override def part1(lengths: Seq[Int]): Int =
+    knotHashRound(initialState(size), lengths)
       .circularList.take(2).product
 
   case class State(circularList: Seq[Int], position: Int, skip: Int)
-
-  def parseLengths(lengths: String): Seq[Int] =
-    lengths.split(",").map(_.toInt)
 
   def initialState(size: Int): State =
     State(0 until size, 0, 0)
@@ -37,17 +38,14 @@ object Day10 extends Puzzle[String, Int, String] {
     State(circularList, position, skip)
   }
 
-  override def part2(lengths: String): String =
+  override def part2(lengths: Seq[Int]): String =
     knotHash(size, rounds)(lengths)
 
-  def knotHash(size: Int, rounds: Int)(source: String): String = {
-    val sparse = sparseHash(initialState(size), calculateLengths(source), rounds)
+  def knotHash(size: Int, rounds: Int)(lengths: Seq[Int]): String = {
+    val sparse = sparseHash(initialState(size), lengths, rounds)
     val dense = denseHash(sparse)
     dense.map(num => leftPad(num.toHexString)('0', 2)).mkString
   }
-
-  def calculateLengths(source:String): Seq[Int] =
-    source.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
 
   def sparseHash(startState: State, lengths: Seq[Int], rounds: Int): State =
     (0 until rounds).foldLeft(startState)((state, _) => knotHashRound(state, lengths))

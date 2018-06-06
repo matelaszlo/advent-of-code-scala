@@ -1,5 +1,6 @@
 package com.lmat.adventofcode.year2017
 
+import com.lmat.adventofcode.year2017.Day08Definitions._
 import com.lmat.adventofcode.year2017.Day08.{parseInstruction, part1, part2}
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
