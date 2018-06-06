@@ -1,6 +1,6 @@
 package com.lmat.util
 
-import com.lmat.util.Sequences.{shiftLeft, shiftRight}
+import com.lmat.util.Sequences.{shiftLeft, shiftRight, swap}
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
@@ -37,4 +37,37 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
     }
   }
 
+  val swaps =
+    Table(
+      ("source",        "pos1", "pos2",   "result"),
+      (Seq(1),          0,      0,        Seq(1)),
+      (Seq(1, 2),       0,      1,        Seq(2, 1)),
+      (Seq(1, 2, 3, 4), 0,      1,        Seq(2, 1, 3, 4)),
+      (Seq(1, 2, 3, 4), 3,      0,        Seq(4, 2, 3, 1)),
+      (Seq(1, 2, 3, 4), 1,      2,        Seq(1, 3, 2, 4)),
+    )
+
+  forAll(swaps) { (source, pos1, pos2, result) =>
+    test(s"Swap $pos1 with $pos2 in $source") {
+      assert(swap(source)(pos1, pos2) == result)
+    }
+  }
+
+  val illegalSwaps =
+    Table(
+      ("source",        "pos1", "pos2"),
+      (Seq(),           0,      0),
+      (Seq(1),          0,      1),
+      (Seq(1, 2, 3, 4), 0,      4),
+      (Seq(1, 2, 3, 4), 3,      -1),
+      (Seq(1, 2, 3, 4), 6,      7),
+    )
+
+  forAll(illegalSwaps) { (source, pos1, pos2) =>
+    test(s"Illegal Swap $pos1 with $pos2 in $source") {
+      assertThrows[IndexOutOfBoundsException] {
+        swap(source)(pos1, pos2)
+      }
+    }
+  }
 }
