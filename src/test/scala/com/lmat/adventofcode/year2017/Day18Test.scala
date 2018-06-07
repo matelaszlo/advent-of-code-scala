@@ -37,7 +37,7 @@ class Day18Test extends FunSuite with TableDrivenPropertyChecks {
     assert(rawInstructions1.split("\n").flatMap(row => parseInstruction(row)).toSeq == instructions1)
   }
 
-  test("Part 1") {
+  test("Day18 - Part 1") {
     assert(part1(instructions1) == 4)
   }
 
@@ -65,7 +65,7 @@ class Day18Test extends FunSuite with TableDrivenPropertyChecks {
     assert(rawInstructions2.split("\n").flatMap(row => parseInstruction(row, true)).toSeq == instructions2)
   }
 
-  test("Part 2") {
+  test("Day18 - Part 2") {
     assert(part2(instructions2) == 3)
   }
 }
