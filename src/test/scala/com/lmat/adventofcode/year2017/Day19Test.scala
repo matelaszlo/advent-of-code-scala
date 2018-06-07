@@ -54,7 +54,7 @@ class Day19Test extends FunSuite with TableDrivenPropertyChecks {
     (Position(5, 14), Crossing)
   )
 
-  test("Parse 1") {
+  test("Parse") {
     assert(parseMap(rawMap.drop(1).split("\n").map(_.toCharArray.toSeq)) == mapDefinitions)
   }
 
