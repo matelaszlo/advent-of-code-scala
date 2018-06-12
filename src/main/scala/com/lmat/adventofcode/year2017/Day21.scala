@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Matrix
 import com.lmat.adventofcode.year2017.Day21Definitions._
 import com.lmat.util.Files.readResource
@@ -11,7 +11,7 @@ object Day21Definitions {
   case class Rule(from: Pattern, to: Pattern)
 }
 
-object Day21 extends SimplePuzzle[Set[Rule], Int, Int]{
+object Day21 extends SimpleCommonPuzzle[Set[Rule], Int, Int]{
   override def parse(resource: String): Set[Rule] =
     readResource(resource).map(parseRule).toSet.flatMap(expandRule)
 

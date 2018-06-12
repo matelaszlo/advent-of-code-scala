@@ -1,9 +1,9 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 
-object Day02 extends SimplePuzzle[Seq[Seq[Int]], Int, Int] {
+object Day02 extends SimpleCommonPuzzle[Seq[Seq[Int]], Int, Int] {
   type SpreadSheet = Seq[Seq[Int]]
 
   override def parse(resource: String): SpreadSheet =

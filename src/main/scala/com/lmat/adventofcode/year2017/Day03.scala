@@ -1,9 +1,9 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 
-object Day03 extends SimplePuzzle[Int, Int, Int] {
+object Day03 extends SimpleCommonPuzzle[Int, Int, Int] {
   override def parse(resource: String): Int =
     readResource(resource).head.toInt
 

@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day23Definitions._
 import com.lmat.util.Files.readResource
 import com.lmat.util.Maths.isComposite
@@ -16,7 +16,7 @@ object Day23Definitions {
   case class Jump     (base: String, value: String) extends Instruction
 }
 
-object Day23 extends SimplePuzzle[Seq[Instruction], Int, Int] {
+object Day23 extends SimpleCommonPuzzle[Seq[Instruction], Int, Int] {
   override def parse(resource: String): Seq[Instruction] = readResource(resource).flatMap(parseInstruction).toVector
 
   def parseInstruction(line: String): Option[Instruction] = {

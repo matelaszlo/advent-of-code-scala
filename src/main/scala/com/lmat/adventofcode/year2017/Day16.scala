@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day16Definitions._
 import com.lmat.util.Files.readResource
 import com.lmat.util.Sequences.{shiftRight, swap}
@@ -12,7 +12,7 @@ object Day16Definitions {
   case class Partner(progA: Char, progB: Char) extends Move
 }
 
-object Day16 extends SimplePuzzle[Seq[Move], String, String] {
+object Day16 extends SimpleCommonPuzzle[Seq[Move], String, String] {
   override def parse(resource: String): Seq[Move] =
     readResource(resource).head.split(",").flatMap(parseMove)
 

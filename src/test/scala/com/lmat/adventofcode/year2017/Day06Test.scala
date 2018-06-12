@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.year2017.Day06.{part1, part2, redistribute}
+import com.lmat.adventofcode.year2017.Day06.{part1, part2, preProcess, redistribute}
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
@@ -13,13 +13,13 @@ class Day06Test extends FunSuite with TableDrivenPropertyChecks {
 
   test("Day06 - Part 1") {
     forAll(examples) { (blocks, steps, _) =>
-      assert(part1(blocks) == steps)
+      assert(part1(preProcess(blocks)) == steps)
     }
   }
 
   test("Day06 - Part 2") {
     forAll(examples) { (blocks, _, size) =>
-      assert(part2(blocks) == size)
+      assert(part2(preProcess(blocks)) == size)
     }
   }
 

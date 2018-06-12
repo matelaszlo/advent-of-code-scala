@@ -1,9 +1,9 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 
-object Day13 extends SimplePuzzle[Map[Int, Int], Int, Int] {
+object Day13 extends SimpleCommonPuzzle[Map[Int, Int], Int, Int] {
   override def parse(resource: String): Map[Int, Int] = parseLayers(readResource(resource))
 
   def parseLayers(rows: Seq[String]): Map[Int, Int] =

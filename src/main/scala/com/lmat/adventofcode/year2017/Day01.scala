@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 import com.lmat.util.Sequences.shiftRight
 
-object Day01 extends SimplePuzzle[String, Int, Int] {
+object Day01 extends SimpleCommonPuzzle[String, Int, Int] {
   override def parse(resource: String): String =
     readResource(resource).head
 

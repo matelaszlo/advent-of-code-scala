@@ -1,11 +1,11 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimpleMultiPuzzle
 import com.lmat.util.Files.readResource
 import com.lmat.util.Sequences.{shiftLeft, shiftRight}
 import com.lmat.util.Strings.leftPad
 
-object Day10 extends Puzzle[Seq[Int], Int, Seq[Int], String] {
+object Day10 extends SimpleMultiPuzzle[Seq[Int], Int, Seq[Int], String] {
   val size   = 256
   val rounds = 64
 

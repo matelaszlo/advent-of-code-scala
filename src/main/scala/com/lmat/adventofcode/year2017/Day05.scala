@@ -1,11 +1,11 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 
 import scala.annotation.tailrec
 
-object Day05 extends SimplePuzzle[Vector[Int], Int, Int] {
+object Day05 extends SimpleCommonPuzzle[Vector[Int], Int, Int] {
   override def parse(resource: String): Vector[Int] =
     readResource(resource).map(_.toInt).toVector
 

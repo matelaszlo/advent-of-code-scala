@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.Puzzle
+import com.lmat.adventofcode.SimpleMultiPuzzle
 import com.lmat.adventofcode.year2017.Day18Definitions._
 import com.lmat.util.Files.readResource
 
@@ -21,7 +21,7 @@ object Day18Definitions {
   case class Receive  (base: String)                extends Instruction
 }
 
-object Day18 extends Puzzle[Seq[Instruction], Long, Seq[Instruction], Int] {
+object Day18 extends SimpleMultiPuzzle[Seq[Instruction], Long, Seq[Instruction], Int] {
   override def parse1(resource: String): Seq[Instruction] = readResource(resource).flatMap(row => parseInstruction(row))
 
   override def parse2(resource: String): Seq[Instruction] = readResource(resource).flatMap(row => parseInstruction(row, true))

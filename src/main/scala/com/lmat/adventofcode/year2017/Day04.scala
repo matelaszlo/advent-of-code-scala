@@ -1,9 +1,9 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
 
-object Day04 extends SimplePuzzle[Seq[Seq[String]], Int, Int]{
+object Day04 extends SimpleCommonPuzzle[Seq[Seq[String]], Int, Int]{
   type PassPhrase = Seq[String]
 
   override def parse(resource: String): Seq[PassPhrase] =

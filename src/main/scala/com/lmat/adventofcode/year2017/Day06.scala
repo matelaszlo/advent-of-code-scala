@@ -1,21 +1,26 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.year2017.Day06Definitions.Result
+import com.lmat.adventofcode.CommonPuzzle
 import com.lmat.util.Files.readResource
 
 import scala.annotation.tailrec
 
-object Day06 extends SimplePuzzle[Vector[Int], Int, Int] {
+object Day06Definitions {
+  case class Result(count: Int, size: Int)
+}
+
+object Day06 extends CommonPuzzle[Vector[Int], Result, Int, Int] {
   type Blocks = Vector[Int]
 
   override def parse(resource: String): Blocks =
     readResource(resource).head.split("\\s+").map(_.toInt).toVector
 
-  case class Result(count: Int, size: Int)
+  override def preProcess(blocks: Blocks): Result = countRedistributionCycles(blocks)
 
-  override def part1(blocks: Blocks): Int = countRedistributionCycles(blocks).count
+  override def part1(result: Result): Int = result.count
 
-  override def part2(blocks: Blocks): Int = countRedistributionCycles(blocks).size
+  override def part2(result: Result): Int = result.size
 
   def countRedistributionCycles(blocks: Blocks): Result = {
     @tailrec

@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day19Definitions._
 import com.lmat.util.Files.readResource
 
@@ -17,7 +17,7 @@ object Day19Definitions {
   case class   CheckPoint(name: Char) extends Tile
 }
 
-object Day19 extends SimplePuzzle[Map[Position, Tile], String, Int] {
+object Day19 extends SimpleCommonPuzzle[Map[Position, Tile], String, Int] {
   override def parse(resource: String): Map[Position, Tile] = parseMap(readResource(resource).map(_.toSeq))
 
   def parseMap(input: Seq[Seq[Char]]): Map[Position, Tile] = {

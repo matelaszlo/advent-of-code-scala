@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day20Definitions._
 import com.lmat.util.Files.readResource
 
@@ -11,7 +11,7 @@ object Day20Definitions {
   case class Particle(id: Int, position: Coordinates, velocity: Coordinates, acceleration: Coordinates)
 }
 
-object Day20 extends SimplePuzzle[Seq[Particle], Int, Int] {
+object Day20 extends SimpleCommonPuzzle[Seq[Particle], Int, Int] {
   override def parse(resource: String): Seq[Particle] =
     readResource(resource).zipWithIndex.flatMap { case (row, i) => parseParticle(row, i) }
 

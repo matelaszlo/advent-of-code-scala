@@ -1,6 +1,6 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day07Definitions._
 import com.lmat.util.Files.readResource
 
@@ -8,7 +8,7 @@ object Day07Definitions {
   case class TowerDefinition(name: String, weight: Int, children: Set[String])
 }
 
-object Day07 extends SimplePuzzle[Set[TowerDefinition], String, Int] {
+object Day07 extends SimpleCommonPuzzle[Set[TowerDefinition], String, Int] {
 
   override def parse(resource: String): Set[TowerDefinition] =
     readResource(resource).flatMap(parseTowerDefinition).toSet

@@ -1,13 +1,13 @@
 package com.lmat.adventofcode.year2017
 
-import com.lmat.adventofcode.SimplePuzzle
+import com.lmat.adventofcode.CommonPuzzle
 import com.lmat.adventofcode.year2017.Day10.{calculateLengths, knotHash}
 import com.lmat.util.Files.readResource
 import com.lmat.util.Strings.leftPad
 
 import scala.annotation.tailrec
 
-object Day14 extends SimplePuzzle[String, Int, Int] {
+object Day14 extends CommonPuzzle[String, Seq[String], Int, Int] {
   override def parse(resource: String): String = readResource(resource).head
 
   val hashSize: Int           = 256
@@ -15,8 +15,10 @@ object Day14 extends SimplePuzzle[String, Int, Int] {
   val hash: String => String  = input => knotHash(hashSize, hashRounds)(calculateLengths(input))
   val gridSize:Int            = 128
 
-  override def part1(key: String): Int =
-    calculateGrid(gridSize, hash)(key).map(_.count(_ == '1')).sum
+  override def preProcess(key: String): Seq[String] = calculateGrid(gridSize, hash)(key)
+
+  override def part1(grid: Seq[String]): Int =
+    grid.map(_.count(_ == '1')).sum
 
   def calculateGrid(gridSize: Int, hash: String => String)(key: String): Seq[String] =
     for (row <- 0 until gridSize)
@@ -25,8 +27,8 @@ object Day14 extends SimplePuzzle[String, Int, Int] {
   def hextoBin(hex: String): String =
     leftPad(BigInt(hex, 16).toString(2))( '0', 128)
 
-  override def part2(key: String): Int =
-    countRegions(calculateGrid(gridSize, hash)(key))
+  override def part2(grid: Seq[String]): Int =
+    countRegions(grid)
 
   def countRegions(grid: Seq[String]): Int = {
     case class Position(row: Int, column: Int)
