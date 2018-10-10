@@ -1,6 +1,6 @@
 package com.lmat.util
 
-import com.lmat.util.Sequences.{shiftLeft, shiftRight, swap}
+import com.lmat.util.Sequences._
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
@@ -68,6 +68,46 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
       assertThrows[IndexOutOfBoundsException] {
         swap(source)(pos1, pos2)
       }
+    }
+  }
+
+  val cycles =
+    Table(
+      ("source",                 "take", "result"),
+      (Seq(),                    5,      Stream()),
+      (Seq(1),                   5,      Stream(1, 1, 1, 1, 1)),
+      (Seq(1),                   10,     Stream(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)),
+      (Seq(1, -1),               5,      Stream(1, -1, 1, -1, 1)),
+      (Seq(1, -1),               10,     Stream(1, -1, 1, -1, 1, -1, 1, -1, 1, -1)),
+      (Seq(1, -1, 2, -2, 3, -3), 5,      Stream(1, -1, 2, -2, 3)),
+      (Seq(1, -1, 2, -2, 3, -3), 10,     Stream(1, -1, 2, -2, 3, -3, 1, -1, 2, -2)),
+    )
+
+  forAll(cycles) { (source, take, result) =>
+    test(s"Cycle $source and take $take") {
+      assert(cycle(source).take(take) == result)
+    }
+  }
+
+  val monoids = Map[String, (Int, (Int, Int) => Int)](
+    "plus" -> (0, _ + _),
+    "times" -> (1, _ * _)
+  )
+
+  val cumulatives =
+    Table(
+      ("source",              "monoid", "result"),
+      (Stream(),              "plus",   Stream(0)),
+      (Stream(),              "times",  Stream(1)),
+      (Stream(1),             "plus",   Stream(0, 1)),
+      (Stream(1),             "times",  Stream(1, 1)),
+      (Stream(1, 2, 3, 4, 5), "plus",   Stream(0, 1, 3, 6, 10, 15)),
+      (Stream(1, 2, 3, 4, 5), "times",  Stream(1, 1, 2, 6, 24, 120)),
+    )
+
+  forAll(cumulatives) { (source, monoid, result) =>
+    test(s"Cumulative ${source.take(5).toList} with $monoid") {
+      assert(cumulative(monoids(monoid)._1, monoids(monoid)._2)(source) == result)
     }
   }
 }
