@@ -1,12 +1,12 @@
 package com.lmat.util
 
-import com.lmat.util.Strings.leftPad
+import com.lmat.util.Strings._
 import org.scalatest.FunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
 class StringsTest extends FunSuite with TableDrivenPropertyChecks {
 
-  val strings =
+  val stringsForPadding =
     Table(
       ("Source",      "Pad", "Length", "Result"),
       ("",            '0',   0,         ""),
@@ -19,9 +19,27 @@ class StringsTest extends FunSuite with TableDrivenPropertyChecks {
       ("123",         '0',   10,        "0000000123"),
     )
 
-  forAll(strings) { (source, pad, length, result) =>
+  forAll(stringsForPadding) { (source, pad, length, result) =>
     test(s"Left Pad $source with $pad to $length") {
       assert(leftPad(source)(pad, length) == result)
+    }
+  }
+
+  val stringsForIndices =
+    Table(
+      ("Source",   "Query", "Indices"),
+      ("",         "",      Seq()),
+      ("",         "aa",    Seq()),
+      ("aa",       "",      Seq((0,0), (1,1))),
+      ("aaa",      "aaa",   Seq((0, 3))),
+      ("aaa",      "aa",    Seq((0, 2), (1, 3))),
+      ("aaa",      "a",     Seq((0, 1), (1, 2), (2, 3))),
+      ("abbaabba", "aa",    Seq((3, 5))),
+    )
+
+  forAll(stringsForIndices) { (source, query, indices) =>
+    test(s"IndicesOf $query in $source") {
+      assert(indicesOf(source, query) == indices)
     }
   }
 }
