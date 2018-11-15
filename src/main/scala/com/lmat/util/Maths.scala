@@ -14,4 +14,13 @@ object Maths {
     * Tests if a number is composite or not
     */
   def isComposite(n: Int): Boolean = !isPrime(n)
+
+  /**
+    * All positive divisors
+    * 60 => Set(1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60)
+    */
+  def divisors(n: Int): Set[Int] = {
+    val half = (1 to math.sqrt(n).toInt).filter(n % _ == 0)
+    (half ++ half.map(n / _)).toSet
+  }
 }

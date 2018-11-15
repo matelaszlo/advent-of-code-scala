@@ -35,4 +35,26 @@ class MathsTest extends FunSuite with TableDrivenPropertyChecks {
       assert(isComposite(number) == composite)
     }
   }
+
+  val divisorsTable =
+    Table(
+      ("number", "divisors"),
+      (1,        Set(1)),
+      (2,        Set(1, 2)),
+      (4,        Set(1, 2, 4)),
+      (5,        Set(1, 5)),
+      (6,        Set(1, 2, 3, 6)),
+      (7,        Set(1, 7)),
+      (8,        Set(1, 2, 4, 8)),
+      (9,        Set(1, 3, 9)),
+      (10,       Set(1, 2, 5, 10)),
+      (15485863, Set(1, 15485863)),
+      (15485861, Set(1, 17, 503, 1811, 8551, 30787, 910933, 15485861)),
+    )
+
+  forAll(divisorsTable) { (number, divisorsResult) =>
+    test(s"Divisors of $number") {
+      assert(divisors(number) == divisorsResult)
+    }
+  }
 }
