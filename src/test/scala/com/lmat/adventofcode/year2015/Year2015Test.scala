@@ -30,7 +30,8 @@ class Year2015Test extends FunSuite with TableDrivenPropertyChecks {
       (19,    518,        200),
       (20,    831600,     884520),
       (21,    91,         158),
-      (22,    953,        1289)
+      (22,    953,        1289),
+      (23,    184,        231)
     )
 
   forAll(puzzles) { (day, part1, part2) =>
