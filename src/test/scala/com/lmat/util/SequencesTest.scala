@@ -106,8 +106,23 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
     )
 
   forAll(cumulatives) { (source, monoid, result) =>
-    test(s"Cumulative ${source.take(5).toList} with $monoid") {
+    test(s"Cumulative ${source.take(10).toList} with $monoid") {
       assert(cumulative(monoids(monoid)._1, monoids(monoid)._2)(source) == result)
+    }
+  }
+
+  val duplicates =
+    Table(
+      ("source",                        "result"),
+      (Stream(),                        None),
+      (Stream(1, 2, 3, 4, 5),           None),
+      (Stream("1", "2", "3", "4"),      None),
+      (Stream(1, 2, 3, 4, 5, 3, 1, 2),  Some(3)),
+    )
+
+  forAll(duplicates) { (source, result) =>
+    test(s"FindFirstDuplicate ${source.take(10).toList}") {
+      assert(findFirstDuplicate(source) == result)
     }
   }
 }

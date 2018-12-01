@@ -57,7 +57,10 @@ object PuzzleRunner extends App {
     (2017, 22) -> year2017.Day22,
     (2017, 23) -> year2017.Day23,
     (2017, 24) -> year2017.Day24,
-    (2017, 25) -> year2017.Day25
+    (2017, 25) -> year2017.Day25,
+
+    // 2018
+    (2018, 1)  -> year2018.Day01,
   )
 
   run(puzzleMap, year, day)

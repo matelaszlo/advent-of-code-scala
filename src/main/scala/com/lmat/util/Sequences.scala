@@ -1,5 +1,7 @@
 package com.lmat.util
 
+import scala.annotation.tailrec
+
 object Sequences {
 
   /**
@@ -46,4 +48,18 @@ object Sequences {
     */
   def cumulative[A](empty: A, combine: (A, A) => A)(stream: Stream[A]): Stream[A] =
     stream.scan(empty)(combine)
+
+  /**
+    * Find the first duplicate in a Stream if any
+    */
+  def findFirstDuplicate[T](stream: Stream[T]): Option[T] = {
+    @tailrec
+    def iterate(remaining: Stream[T], seen: Set[T]): Option[T] = remaining match {
+      case h #:: _ if seen(h) => Some(h)
+      case h #:: t            => iterate(t, seen + h)
+      case _                  => None
+    }
+
+    iterate(stream, Set[T]())
+  }
 }
