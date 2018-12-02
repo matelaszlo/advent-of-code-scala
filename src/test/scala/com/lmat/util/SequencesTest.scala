@@ -125,4 +125,20 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
       assert(findFirstDuplicate(source) == result)
     }
   }
+
+  val elements =
+    Table(
+      ("source",                                  "result"),
+      (Stream(),                                  Map()),
+      (Seq(1, 2, 3, 4, 5),                        Map(1   -> 1,  2  -> 1,  3  -> 1,  4  -> 1,  5  -> 1)),
+      (Stream("1", "2", "3", "4", "3", "3", "1"), Map("1" -> 2, "2" -> 1, "3" -> 3, "4" -> 1)),
+      (Vector(1, 2, 3, 4, 5, 3, 1, 2),            Map(1   -> 2,  2  -> 2,  3  -> 2,  4  -> 1,  5  -> 1)),
+      ("1122334455".toCharArray.toSeq,            Map('1' -> 2, '2' -> 2, '3' -> 2, '4' -> 2, '5' -> 2)),
+    )
+
+  forAll(elements) { (source, result) =>
+    test(s"Count all elements ${source}") {
+      assert(countElements(source) == result)
+    }
+  }
 }

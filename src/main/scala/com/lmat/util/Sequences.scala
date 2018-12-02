@@ -62,4 +62,10 @@ object Sequences {
 
     iterate(stream, Set[T]())
   }
+
+  /**
+    * Collect the count of all elements to a Map
+    */
+  def countElements[A](seq: Seq[A]): Map[A, Int] =
+    seq.groupBy(identity).mapValues(_.length)
 }
