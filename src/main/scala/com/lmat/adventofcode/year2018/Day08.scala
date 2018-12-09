@@ -1,7 +1,7 @@
 package com.lmat.adventofcode.year2018
 
 import com.lmat.adventofcode.CommonPuzzle
-import com.lmat.adventofcode.year2018.Day08Definitions.Node
+import com.lmat.adventofcode.year2018.Day08Definitions._
 import com.lmat.util.Files.readResource
 
 object Day08Definitions {
