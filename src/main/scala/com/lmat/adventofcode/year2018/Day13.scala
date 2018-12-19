@@ -78,7 +78,7 @@ object Day13 extends SimpleCommonPuzzle[(Tracks, Seq[Cart]), String, String] {
       case _ => (remaining, collisions)
     }
 
-    val orderedCarts = carts.sortBy(_.coordinates)
+    val orderedCarts = carts.sortBy(c => (c.coordinates._2, c.coordinates._1))
     simulate(orderedCarts, collisions, Seq())
   }
 

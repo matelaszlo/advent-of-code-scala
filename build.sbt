@@ -1,6 +1,8 @@
-name := "advent-of-code-scala"
-version := "0.1"
+lazy val root = (project in file("."))
+  .settings(name := "Advent of Code Scala")
+  .settings(moduleName := "advent-of-code-scala")
+  .settings(version := "0.1")
+  .settings(scalaVersion := "2.12.8")
+  .settings(libraryDependencies ++= dependencies)
 
-scalaVersion := "2.12.6"
-
-libraryDependencies += "org.scalatest" %% "scalatest"   % "3.0.5"  % "test"
+lazy val dependencies = Seq("org.scalatest" %% "scalatest"   % "3.0.5"  % "test")
