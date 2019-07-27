@@ -22,5 +22,5 @@ object Day04 extends SimpleCommonPuzzle[Seq[Seq[String]], Int, Int]{
     words.size == words.distinct.size
 
   def hasNoAnagrams(words: PassPhrase): Boolean =
-    words.size == words.map(_.sorted).distinct.size
+    words.size == words.map(_.toSeq.sorted.unwrap).distinct.size
 }

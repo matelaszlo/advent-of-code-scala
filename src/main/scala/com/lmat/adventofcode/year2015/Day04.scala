@@ -13,7 +13,7 @@ object Day04 extends SimpleCommonPuzzle[String, Int, Int]{
     findFirstHashStartingWith(key, "000000")
 
   def findFirstHashStartingWith(key: String, pattern: String): Int =
-    Stream.from(1).map(i => (i, md5(s"$key$i")))
+    LazyList.from(1).map(i => (i, md5(s"$key$i")))
       .find { case (_, hash) => hash.startsWith(pattern) }
       .map(_._1).get
 

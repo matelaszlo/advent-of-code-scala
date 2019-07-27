@@ -62,7 +62,7 @@ object Day13 extends SimpleCommonPuzzle[(Tracks, Seq[Cart]), String, String] {
 
   override def part1(input: (Tracks, Seq[Cart])): String = {
     val (tracks, carts) = input
-    val (_, collisions) = Stream.iterate((carts, Seq[Coordinates]())) { case (car, col) => simulateTick(tracks)(car, col) }.find(_._2.nonEmpty).get
+    val (_, collisions) = LazyList.iterate((carts, Seq[Coordinates]())) { case (car, col) => simulateTick(tracks)(car, col) }.find(_._2.nonEmpty).get
     val (x, y) = collisions.head
     s"$x,$y"
   }
@@ -131,7 +131,7 @@ object Day13 extends SimpleCommonPuzzle[(Tracks, Seq[Cart]), String, String] {
 
   override def part2(input: (Tracks, Seq[Cart])): String = {
     val (tracks, carts) = input
-    val (cart +: _, _) = Stream.iterate((carts, Seq[Coordinates]())) { case (car, col) => simulateTick(tracks)(car, col) }.find(_._1.size == 1).get
+    val (cart +: _, _) = LazyList.iterate((carts, Seq[Coordinates]())) { case (car, col) => simulateTick(tracks)(car, col) }.find(_._1.size == 1).get
     val (x, y) = cart.coordinates
     s"$x,$y"
   }

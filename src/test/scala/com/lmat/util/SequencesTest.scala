@@ -74,13 +74,13 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
   val cycles =
     Table(
       ("source",                 "take", "result"),
-      (Seq(),                    5,      Stream()),
-      (Seq(1),                   5,      Stream(1, 1, 1, 1, 1)),
-      (Seq(1),                   10,     Stream(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)),
-      (Seq(1, -1),               5,      Stream(1, -1, 1, -1, 1)),
-      (Seq(1, -1),               10,     Stream(1, -1, 1, -1, 1, -1, 1, -1, 1, -1)),
-      (Seq(1, -1, 2, -2, 3, -3), 5,      Stream(1, -1, 2, -2, 3)),
-      (Seq(1, -1, 2, -2, 3, -3), 10,     Stream(1, -1, 2, -2, 3, -3, 1, -1, 2, -2)),
+      (Seq(),                    5,      LazyList()),
+      (Seq(1),                   5,      LazyList(1, 1, 1, 1, 1)),
+      (Seq(1),                   10,     LazyList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)),
+      (Seq(1, -1),               5,      LazyList(1, -1, 1, -1, 1)),
+      (Seq(1, -1),               10,     LazyList(1, -1, 1, -1, 1, -1, 1, -1, 1, -1)),
+      (Seq(1, -1, 2, -2, 3, -3), 5,      LazyList(1, -1, 2, -2, 3)),
+      (Seq(1, -1, 2, -2, 3, -3), 10,     LazyList(1, -1, 2, -2, 3, -3, 1, -1, 2, -2)),
     )
 
   forAll(cycles) { (source, take, result) =>
@@ -97,12 +97,12 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
   val cumulatives =
     Table(
       ("source",              "monoid", "result"),
-      (Stream(),              "plus",   Stream(0)),
-      (Stream(),              "times",  Stream(1)),
-      (Stream(1),             "plus",   Stream(0, 1)),
-      (Stream(1),             "times",  Stream(1, 1)),
-      (Stream(1, 2, 3, 4, 5), "plus",   Stream(0, 1, 3, 6, 10, 15)),
-      (Stream(1, 2, 3, 4, 5), "times",  Stream(1, 1, 2, 6, 24, 120)),
+      (LazyList(),              "plus",   LazyList(0)),
+      (LazyList(),              "times",  LazyList(1)),
+      (LazyList(1),             "plus",   LazyList(0, 1)),
+      (LazyList(1),             "times",  LazyList(1, 1)),
+      (LazyList(1, 2, 3, 4, 5), "plus",   LazyList(0, 1, 3, 6, 10, 15)),
+      (LazyList(1, 2, 3, 4, 5), "times",  LazyList(1, 1, 2, 6, 24, 120)),
     )
 
   forAll(cumulatives) { (source, monoid, result) =>
@@ -114,10 +114,10 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
   val duplicates =
     Table(
       ("source",                        "result"),
-      (Stream(),                        None),
-      (Stream(1, 2, 3, 4, 5),           None),
-      (Stream("1", "2", "3", "4"),      None),
-      (Stream(1, 2, 3, 4, 5, 3, 1, 2),  Some(3)),
+      (LazyList(),                        None),
+      (LazyList(1, 2, 3, 4, 5),           None),
+      (LazyList("1", "2", "3", "4"),      None),
+      (LazyList(1, 2, 3, 4, 5, 3, 1, 2),  Some(3)),
     )
 
   forAll(duplicates) { (source, result) =>
@@ -128,12 +128,12 @@ class SequencesTest extends FunSuite with TableDrivenPropertyChecks {
 
   val elements =
     Table(
-      ("source",                                  "result"),
-      (Stream(),                                  Map()),
-      (Seq(1, 2, 3, 4, 5),                        Map(1   -> 1,  2  -> 1,  3  -> 1,  4  -> 1,  5  -> 1)),
-      (Stream("1", "2", "3", "4", "3", "3", "1"), Map("1" -> 2, "2" -> 1, "3" -> 3, "4" -> 1)),
-      (Vector(1, 2, 3, 4, 5, 3, 1, 2),            Map(1   -> 2,  2  -> 2,  3  -> 2,  4  -> 1,  5  -> 1)),
-      ("1122334455".toCharArray.toSeq,            Map('1' -> 2, '2' -> 2, '3' -> 2, '4' -> 2, '5' -> 2)),
+      ("source",                                    "result"),
+      (LazyList(),                                  Map()),
+      (Seq(1, 2, 3, 4, 5),                          Map(1   -> 1,  2  -> 1,  3  -> 1,  4  -> 1,  5  -> 1)),
+      (LazyList("1", "2", "3", "4", "3", "3", "1"), Map("1" -> 2, "2" -> 1, "3" -> 3, "4" -> 1)),
+      (Vector(1, 2, 3, 4, 5, 3, 1, 2),              Map(1   -> 2,  2  -> 2,  3  -> 2,  4  -> 1,  5  -> 1)),
+      ("1122334455".toCharArray.toSeq,              Map('1' -> 2, '2' -> 2, '3' -> 2, '4' -> 2, '5' -> 2)),
     )
 
   forAll(elements) { (source, result) =>

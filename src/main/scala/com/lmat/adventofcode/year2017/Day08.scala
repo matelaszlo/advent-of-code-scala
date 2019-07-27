@@ -4,7 +4,7 @@ import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day08Definitions._
 import com.lmat.util.Files.readResource
 
-import scala.collection.Map
+import scala.collection.immutable.Map
 
 object Day08Definitions {
   case class Condition(register: String, comparison: String, amount: Int)
@@ -45,7 +45,7 @@ object Day08 extends SimpleCommonPuzzle[Seq[Instruction], Int, Int] {
   }
 
   object RegisterState {
-    val empty = RegisterState(Map())
+    val empty = RegisterState(Map(): Map[String, Int])
   }
 
   override def part1(instructions: Seq[Instruction]): Int =

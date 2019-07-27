@@ -30,7 +30,7 @@ object Day17 extends CommonPuzzle[Seq[Int], Seq[Seq[Int]], Int, Int]{
 
   override def part2(combinations: Seq[Seq[Int]]): Int =
     combinations
-      .groupBy(_.size)
+      .groupBy(_.size).view
       .mapValues(_.size)
       .minBy(_._1)
       ._2

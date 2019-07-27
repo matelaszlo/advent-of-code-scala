@@ -18,7 +18,7 @@ object Day24 extends SimpleCommonPuzzle[Set[Int], Long, Long]{
     * Where the rest of the packages are divisible to n-1 groups that have the same size as the original package
     * And where the group is minimally sized
     */
-  def separatePackages(packages: Set[Int], n: Int): Stream[Set[Int]] = {
+  def separatePackages(packages: Set[Int], n: Int): LazyList[Set[Int]] = {
     val groupOneCandidates = candidates(packages, n).filter(candidate => check(packages -- candidate, n - 1, packages.sum / n))
     groupOneCandidates.takeWhile(_.size == groupOneCandidates.head.size)
   }
@@ -28,8 +28,8 @@ object Day24 extends SimpleCommonPuzzle[Set[Int], Long, Long]{
     * That have a sum that is nth of the sum of all the packages
     * In increasing size
     */
-  def candidates(packages: Set[Int], n: Int): Stream[Set[Int]] =
-    Stream.from(1).flatMap(i => packages.subsets(i).filter(_.sum == packages.sum / n))
+  def candidates(packages: Set[Int], n: Int): LazyList[Set[Int]] =
+    LazyList.from(1).flatMap(i => packages.subsets(i).filter(_.sum == packages.sum / n))
 
   /**
     * Check if the packages are divisible to n groups with equal sums

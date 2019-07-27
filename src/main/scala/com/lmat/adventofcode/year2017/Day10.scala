@@ -14,7 +14,7 @@ object Day10 extends SimpleMultiPuzzle[Seq[Int], Int, Seq[Int], String] {
   override def parse2(resource: String): Seq[Int] = calculateLengths(readResource(resource).head)
 
   def calculateLengths(source:String): Seq[Int] =
-    source.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
+    source.toCharArray.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
 
   override def part1(lengths: Seq[Int]): Int =
     knotHashRound(initialState(size), lengths)

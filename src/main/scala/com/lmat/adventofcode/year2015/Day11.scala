@@ -9,7 +9,7 @@ object Day11 extends SimpleCommonPuzzle[String, String, String] {
   override def part1(current: String): String = nextPassword(current)
 
   def nextPassword(current:String): String =
-    Stream.iterate(current)(increment).drop(1).find(isValid).get
+    LazyList.iterate(current)(increment).drop(1).find(isValid).get
 
   def increment(password: String): String = password.toCharArray.toSeq match {
     case start :+ 'z'  => increment(start.mkString) :+ 'a'

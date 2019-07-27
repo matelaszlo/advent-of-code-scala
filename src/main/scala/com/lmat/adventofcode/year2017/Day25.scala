@@ -49,7 +49,7 @@ object Day25 extends SimpleCommonPuzzle[TuringMachineConfig, Int, Unit] {
     TuringMachineConfig(
       parseStartState(lines.head),
       parseSteps(lines.drop(1).head),
-      lines.drop(3).sliding(10, 10).map(parseState).toList.groupBy(_.name).mapValues(_.head)
+      lines.drop(3).sliding(10, 10).map(parseState).toList.groupBy(_.name).view.mapValues(_.head).toMap
     )
   }
 

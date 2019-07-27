@@ -28,6 +28,6 @@ object Day05 extends SimpleCommonPuzzle[Seq[String], Int, Int] {
     hasDoubleTwice(string) && hasDoubleLetter(string, 1)
 
   def hasDoubleTwice(string: String): Boolean =
-    string.sliding(2).zipWithIndex
-      .exists { case (double, i) => string.updated(i, '\0').updated(i + 1, '\0').contains(double)}
+    string.toSeq.sliding(2).map(_.unwrap).zipWithIndex
+      .exists { case (double, i) => string.updated(i, '\u0000').updated(i + 1, '\u0000').contains(double)}
 }

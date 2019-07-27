@@ -18,9 +18,9 @@ object Day02 extends SimpleCommonPuzzle[Seq[String], Int, String] {
       .find{ case (b1, b2) => difference(b1, b2) == 1 }
       .map { case (b1, b2) => commonLetters(b1, b2)}.get
 
-  def generatePairs(boxIds: Seq[String]): Stream[(String, String)] = boxIds match {
-    case h +: t => t.map((h, _)).toStream ++ generatePairs(t)
-    case _      => Stream()
+  def generatePairs(boxIds: Seq[String]): LazyList[(String, String)] = boxIds match {
+    case h +: t => t.map((h, _)).to(LazyList) ++ generatePairs(t)
+    case _      => LazyList()
   }
 
   def difference(b1: String, b2: String): Int =

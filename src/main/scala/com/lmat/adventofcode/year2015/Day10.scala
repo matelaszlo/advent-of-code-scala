@@ -10,7 +10,7 @@ object Day10 extends SimpleCommonPuzzle[String, Int, Int] {
   override def parse(resource: String): String = readResource(resource).head
 
   override def part1(digits: String): Int =
-    Stream.iterate(digits)(lookAndSay).map(_.length).drop(40).head
+    LazyList.iterate(digits)(lookAndSay).map(_.length).drop(40).head
 
   def toDigits(number:String): Seq[Int] =
     number.map(_.asDigit)
@@ -37,6 +37,6 @@ object Day10 extends SimpleCommonPuzzle[String, Int, Int] {
   }
 
   override def part2(digits: String): Int =
-    Stream.iterate(digits)(lookAndSay).map(_.length).drop(50).head
+    LazyList.iterate(digits)(lookAndSay).map(_.length).drop(50).head
 
 }

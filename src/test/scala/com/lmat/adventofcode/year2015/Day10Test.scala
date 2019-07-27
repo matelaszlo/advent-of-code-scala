@@ -16,7 +16,7 @@ class Day10Test extends FunSuite with TableDrivenPropertyChecks {
   )
 
   test("Day10 - Look And Say") {
-    val actual = Stream.iterate("1")(lookAndSay)
+    val actual = LazyList.iterate("1")(lookAndSay)
     assert(actual.take(6) == sequence)
   }
 

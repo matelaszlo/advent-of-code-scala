@@ -17,8 +17,8 @@ object Day25 extends SimpleCommonPuzzle[(Int, Int), Long, Unit]{
     }
   }
 
-  lazy val codes: Stream[Long] =
-    Stream.iterate(20151125L)(num => (num * 252533L) % 33554393L)
+  lazy val codes: LazyList[Long] =
+    LazyList.iterate(20151125L)(num => (num * 252533L) % 33554393L)
 
   override def part1(index: (Int, Int)): Long = {
     val (row, column) = index

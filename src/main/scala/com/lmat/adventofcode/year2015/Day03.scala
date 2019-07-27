@@ -2,6 +2,7 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
+import scala.language.postfixOps
 
 object Day03 extends SimpleCommonPuzzle[Seq[Char], Int, Int] {
   override def parse(resource: String): Seq[Char] = readResource(resource).flatMap(_.toCharArray)

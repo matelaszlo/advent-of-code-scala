@@ -29,15 +29,15 @@ object Sequences {
     sequence.updated(pos1, sequence(pos2)).updated(pos2, sequence(pos1))
 
   /**
-    * Cycle a sequence as an infinite Stream
+    * Cycle a sequence as an infinite LazyList
     * [0, 1] => [0, 1, 0, 1, ... [
     */
-  def cycle[A](sequence: Seq[A]): Stream[A] =
-    if (sequence.isEmpty) Stream.empty[A]
-    else Stream.continually(sequence).flatten
+  def cycle[A](sequence: Seq[A]): LazyList[A] =
+    if (sequence.isEmpty) LazyList.empty[A]
+    else LazyList.continually(sequence).flatten
 
   /**
-    * Transform a stream into its cumulative equivalent
+    * Transform a LazyList into its cumulative equivalent
     * Using empty and combine
     *
     * Using:  0, _ + _
@@ -46,15 +46,15 @@ object Sequences {
     * Using:  1, _ * _
     * [1, 2, 3, 4, 5, .. [ => [1, 1, 2, 6, 24, 100 .. [
     */
-  def cumulative[A](empty: A, combine: (A, A) => A)(stream: Stream[A]): Stream[A] =
+  def cumulative[A](empty: A, combine: (A, A) => A)(stream: LazyList[A]): LazyList[A] =
     stream.scan(empty)(combine)
 
   /**
-    * Find the first duplicate in a Stream if any
+    * Find the first duplicate in a LazyList if any
     */
-  def findFirstDuplicate[T](stream: Stream[T]): Option[T] = {
+  def findFirstDuplicate[T](stream: LazyList[T]): Option[T] = {
     @tailrec
-    def iterate(remaining: Stream[T], seen: Set[T]): Option[T] = remaining match {
+    def iterate(remaining: LazyList[T], seen: Set[T]): Option[T] = remaining match {
       case h #:: _ if seen(h) => Some(h)
       case h #:: t            => iterate(t, seen + h)
       case _                  => None
@@ -67,5 +67,5 @@ object Sequences {
     * Collect the count of all elements to a Map
     */
   def countElements[A](seq: Seq[A]): Map[A, Int] =
-    seq.groupBy(identity).mapValues(_.length)
+    seq.groupBy(identity).view.mapValues(_.length).toMap
 }

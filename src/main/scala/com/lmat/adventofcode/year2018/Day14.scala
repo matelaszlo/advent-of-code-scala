@@ -11,7 +11,7 @@ object Day14 extends SimpleCommonPuzzle[Int, String, Int] {
   /**
     * If we can generate an infinite Stream of the recipes both parts become trivial
     */
-  def recipeStream: Stream[Int] = {
+  def recipeStream: LazyList[Int] = {
     type State = (Vector[Int], Int, Int)
 
     def next(state: State): State = {
@@ -23,11 +23,11 @@ object Day14 extends SimpleCommonPuzzle[Int, String, Int] {
       (extendedRecipes, shiftRight(i1, recipe1 + 1, extendedRecipes.length), shiftRight(i2, recipe2 + 1, extendedRecipes.length))
     }
 
-    Stream.iterate((Vector(3, 7), 0, 1))(next).zipWithIndex.map { case ((recipes, _, _), index) => recipes(index) }
+    LazyList.iterate((Vector(3, 7), 0, 1))(next).zipWithIndex.map { case ((recipes, _, _), index) => recipes(index) }
   }
 
   def toDigits(number: Int): Vector[Int] =
-    number.toString.map(_.asDigit).toVector
+    number.toString.toCharArray.map(_.asDigit).toVector
 
   def shiftRight(i: Int, n: Int, length: Int): Int = {
     val shifted = i + n

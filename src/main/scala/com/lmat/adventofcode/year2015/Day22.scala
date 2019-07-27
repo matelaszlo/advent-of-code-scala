@@ -61,20 +61,20 @@ object Day22 extends CommonPuzzle[Warrior, Game, Int, Int] {
   case class SearchState(gameState: GameState, playersTurn: Boolean, manaUsed: Int, spellsUsed: Seq[Spell])
 
   override def part1(game: Game): Int = {
-    def children(searchState: SearchState): Stream[SearchState] =
-      if (isFinished(searchState.gameState)) Stream()
+    def children(searchState: SearchState): LazyList[SearchState] =
+      if (isFinished(searchState.gameState)) LazyList()
       else {
         val afterEffects = applyEffects(searchState.gameState)
         if (searchState.playersTurn)
           game.spells.filter(_.cost <= afterEffects.player.mana).filter(isCastable(_, afterEffects.effects))
-            .toStream.sortBy(_.cost)
+            .to(LazyList).sortBy(_.cost)
             .map(spell => (spell, useSpell(afterEffects.player, afterEffects.boss, spell)))
-            .flatMap { case (spell, nextState) => Stream(SearchState(nextState.copy(effects = nextState.effects ++ afterEffects.effects), false, searchState.manaUsed + spell.cost, searchState.spellsUsed :+ spell)) }
+            .flatMap { case (spell, nextState) => LazyList(SearchState(nextState.copy(effects = nextState.effects ++ afterEffects.effects), false, searchState.manaUsed + spell.cost, searchState.spellsUsed :+ spell)) }
         else
-          Stream(SearchState(afterEffects.copy(player = damage(afterEffects.boss, afterEffects.player)), true, searchState.manaUsed, searchState.spellsUsed))
+          LazyList(SearchState(afterEffects.copy(player = damage(afterEffects.boss, afterEffects.player)), true, searchState.manaUsed, searchState.spellsUsed))
       }
 
-    streamSearch(Stream(SearchState(GameState(game.player, game.boss, Set()), true, 0, Seq())), children)
+    streamSearch(LazyList(SearchState(GameState(game.player, game.boss, Set()), true, 0, Seq())), children)
       .filter(s => isWon(s.gameState)).head.manaUsed
   }
 
@@ -137,23 +137,23 @@ object Day22 extends CommonPuzzle[Warrior, Game, Int, Int] {
   }
 
   override def part2(game: Game): Int = {
-    def children(searchState: SearchState): Stream[SearchState] =
-      if (isFinished(searchState.gameState)) Stream()
+    def children(searchState: SearchState): LazyList[SearchState] =
+      if (isFinished(searchState.gameState)) LazyList()
       else {
         if (searchState.playersTurn) {
           val afterEffects = applyEffects(searchState.gameState.copy(player = searchState.gameState.player.copy(hitPoints = searchState.gameState.player.hitPoints - 1)))
           game.spells.filter(_.cost <= afterEffects.player.mana).filter(isCastable(_, afterEffects.effects))
-            .toStream.sortBy(_.cost)
+            .to(LazyList).sortBy(_.cost)
             .map(spell => (spell, useSpell(afterEffects.player, afterEffects.boss, spell)))
-            .flatMap { case (spell, nextState) => Stream(SearchState(nextState.copy(effects = nextState.effects ++ afterEffects.effects), false, searchState.manaUsed + spell.cost, searchState.spellsUsed :+ spell)) }
+            .flatMap { case (spell, nextState) => LazyList(SearchState(nextState.copy(effects = nextState.effects ++ afterEffects.effects), false, searchState.manaUsed + spell.cost, searchState.spellsUsed :+ spell)) }
         }
         else {
           val afterEffects = applyEffects(searchState.gameState)
-          Stream(SearchState(afterEffects.copy(player = damage(afterEffects.boss, afterEffects.player)), true, searchState.manaUsed, searchState.spellsUsed))
+          LazyList(SearchState(afterEffects.copy(player = damage(afterEffects.boss, afterEffects.player)), true, searchState.manaUsed, searchState.spellsUsed))
         }
       }
 
-    streamSearch(Stream(SearchState(GameState(game.player, game.boss, Set()), true, 0, Seq())), children)
+    streamSearch(LazyList(SearchState(GameState(game.player, game.boss, Set()), true, 0, Seq())), children)
       .filter(s => isWon(s.gameState)).head.manaUsed
   }
 }

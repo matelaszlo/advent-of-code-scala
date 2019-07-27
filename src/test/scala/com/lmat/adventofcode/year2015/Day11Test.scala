@@ -16,7 +16,7 @@ class Day11Test extends FunSuite with TableDrivenPropertyChecks {
   )
 
   test("Day11 - Increment") {
-    assert(Stream.iterate("ax")(increment).take(6) == sequence)
+    assert(LazyList.iterate("ax")(increment).take(6) == sequence)
   }
 
   val passwords =

@@ -33,8 +33,8 @@ object Day15 extends CommonPuzzle[Seq[Ingredient], Seq[Map[Ingredient, Int]], In
     ingredients
       .flatMap(i => List.fill(n)(i.name))
       .combinations(n)
-      .toStream
-      .map(_.groupBy(n => ingredients.find(_.name == n).get).mapValues(_.size))
+      .to(LazyList)
+      .map(_.groupBy(n => ingredients.find(_.name == n).get).view.mapValues(_.size).toMap)
   }
 
   override def part1(combinations: Seq[Map[Ingredient, Int]]): Int =
@@ -56,6 +56,6 @@ object Day15 extends CommonPuzzle[Seq[Ingredient], Seq[Map[Ingredient, Int]], In
     combinations.filter(calories(_) == 500).map(score).max
 
   def calories(ingredients: Map[Ingredient, Int]): Int =
-    ingredients.map{case (i, n) => i.calories * n}.sum
+    ingredients.map{case (i : Ingredient, n) => i.calories * n}.sum
 
 }

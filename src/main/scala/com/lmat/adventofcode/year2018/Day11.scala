@@ -40,7 +40,7 @@ object Day11 extends SimpleCommonPuzzle[Int, String, String] {
   }
 
   def hudredsDigit(number: Int): Int =
-    number.toString.map(_.asDigit).takeRight(3).headOption.getOrElse(0)
+    number.toString.toCharArray.map(_.asDigit).takeRight(3).headOption.getOrElse(0)
 
   override def part2(serialNumber: Int): String = {
     val gridSize = 300

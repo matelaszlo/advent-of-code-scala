@@ -32,7 +32,7 @@ object Day16 extends SimpleCommonPuzzle[Seq[Move], String, String] {
   override def part1(moves: Seq[Move]): String = dance("abcdefghijklmnop", moves)
 
   def dance(start: String, moves: Seq[Move]): String =
-    moves.foldLeft(start.toSeq)((pos, m) => move(pos, m)).mkString
+    moves.foldLeft(start.toCharArray.toSeq)((pos, m) => move(pos, m)).mkString
 
   def move(positions: Seq[Char], move: Move): Seq[Char] = move match {
     case Spin(value)           => shiftRight(positions, value)
@@ -52,7 +52,7 @@ object Day16 extends SimpleCommonPuzzle[Seq[Move], String, String] {
   }
 
   def simplify(start: String, moves:Seq[Move], repeats: Int): Int = {
-    val cycleSize: Int = Stream.iterate((start, 0)) { case (pos, i) => (dance(pos, moves), i + 1) }.drop(1).find(_._1 == start).map(_._2).getOrElse(repeats)
+    val cycleSize: Int = LazyList.iterate((start, 0)) { case (pos, i) => (dance(pos, moves), i + 1) }.drop(1).find(_._1 == start).map(_._2).getOrElse(repeats)
     repeats % cycleSize
   }
 }

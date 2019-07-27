@@ -7,7 +7,7 @@ object Day13 extends SimpleCommonPuzzle[Map[Int, Int], Int, Int] {
   override def parse(resource: String): Map[Int, Int] = parseLayers(readResource(resource))
 
   def parseLayers(rows: Seq[String]): Map[Int, Int] =
-    rows.map(_.split(": ")).groupBy(_.head.toInt).mapValues(_.head(1).toInt)
+    rows.map(_.split(": ")).groupBy(_.head.toInt).view.mapValues(_.head(1).toInt).toMap
 
   override def part1(layers: Map[Int, Int]): Int = calculateSeverity(layers, 0)
 
@@ -20,7 +20,7 @@ object Day13 extends SimpleCommonPuzzle[Map[Int, Int], Int, Int] {
     (delay + layer) % ((layerSize - 1) * 2) == 0
 
   override def part2(layers: Map[Int, Int]): Int =
-    Stream.from(0).find(delay => canEscape(layers, delay)).get
+    LazyList.from(0).find(delay => canEscape(layers, delay)).get
 
   def canEscape(layers: Map[Int, Int], delay: Int): Boolean =
     layers.forall { case (layer, layerSize) => !fallsOnZero(layer, layerSize, delay) }

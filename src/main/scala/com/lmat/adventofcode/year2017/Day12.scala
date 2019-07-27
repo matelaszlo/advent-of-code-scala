@@ -21,7 +21,7 @@ object Day12 extends SimpleCommonPuzzle[Map[Int, Set[Int]], Int, Int] {
       }
     }
 
-    rows.flatMap(parseProgram).groupBy(_.id).mapValues(_.head.connections)
+    rows.flatMap(parseProgram).groupBy(_.id).view.mapValues(_.head.connections).toMap
   }
 
   override def part1(programMap: ProgramMap): Int = connectedTo(programMap)(0).size

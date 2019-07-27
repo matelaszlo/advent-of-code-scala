@@ -32,7 +32,7 @@ object Day13 extends SimpleCommonPuzzle[Seq[HappinessChange], Int, Int]{
     happinessChanges.map(_.subject).distinct
 
   def buildHappinessChangeMap(happinessChanges: Seq[HappinessChange]): Map[Set[String], Int] =
-    happinessChanges.groupBy(h => Set(h.subject, h.cause)).mapValues(_.map(_.change).sum)
+    happinessChanges.groupBy(h => Set(h.subject, h.cause)).view.mapValues(_.map(_.change).sum).toMap
 
   def calculateHappinessChange(happinessChangeMap: Map[Set[String], Int])(seating: Seq[String]): Int =
     (seating zip shiftRight(seating, 1)).map { case (h1, h2) => Set(h1, h2) }.map(happinessChangeMap(_)).sum

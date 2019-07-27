@@ -64,8 +64,8 @@ object Day10 extends SimpleCommonPuzzle[Seq[Point], String, Int] {
     iterate(n)(start, 0)
   }
 
-  def pointsStream(points: Seq[Point]): Stream[Seq[Point]] =
-    Stream.iterate(points)(next)
+  def pointsStream(points: Seq[Point]): LazyList[Seq[Point]] =
+    LazyList.iterate(points)(next)
 
   def next(points: Seq[Point]): Seq[Point] =
     points.map(next)

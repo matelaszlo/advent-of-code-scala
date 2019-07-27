@@ -63,7 +63,7 @@ object Day24 extends SimpleCommonPuzzle[GroupConfiguration, Int, Int] {
   type CombatState = (GroupConfiguration, Boolean)
 
   def simulate(state: CombatState): CombatState =
-    Stream.iterate(state)(fight).find(finished).get
+    LazyList.iterate(state)(fight).find(finished).get
 
   /**
     * Fighting happens in order of initiative
@@ -143,7 +143,7 @@ object Day24 extends SimpleCommonPuzzle[GroupConfiguration, Int, Int] {
   }
 
   override def part2(start: GroupConfiguration): Int = {
-    val result = Stream.from(1).map(boost => {
+    val result = LazyList.from(1).map(boost => {
         val (result, tieFlag) = simulate((boostImmune(start, boost), false))
         val winners = if (tieFlag) "draw" else result.keys.map(_._1).toSet.head
         (result, winners)})

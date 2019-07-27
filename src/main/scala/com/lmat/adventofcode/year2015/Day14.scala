@@ -27,10 +27,10 @@ object Day14 extends SimpleCommonPuzzle[List[Reindeer], Int, Int]{
   override def part1(reindeers: List[Reindeer]): Int =
     reindeers.map(cumulativeTravelledStream(_)(2503)).max
 
-  def travelledStream(reindeer: Reindeer): Stream[Int] =
+  def travelledStream(reindeer: Reindeer): LazyList[Int] =
     cycle(Seq.fill(reindeer.flyDuration)(reindeer.speed) ++ Seq.fill(reindeer.restDuration)(0))
 
-  def cumulativeTravelledStream(reindeer: Reindeer): Stream[Int] =
+  def cumulativeTravelledStream(reindeer: Reindeer): LazyList[Int] =
     cumulative[Int](0, _ + _)(travelledStream(reindeer))
 
   /**
@@ -39,7 +39,7 @@ object Day14 extends SimpleCommonPuzzle[List[Reindeer], Int, Int]{
   override def part2(reindeers: List[Reindeer]): Int =
     cumulativePointsStream(reindeers)(2503).max
 
-  def pointsStream(reindeers: List[Reindeer]): Stream[List[Int]] =
+  def pointsStream(reindeers: List[Reindeer]): LazyList[List[Int]] =
     merge(reindeers.map(cumulativeTravelledStream(_).drop(1))).map(toPoints)
 
   def toPoints(distances:List[Int]): List[Int] = {
@@ -47,12 +47,12 @@ object Day14 extends SimpleCommonPuzzle[List[Reindeer], Int, Int]{
     distances.map(d => if(d == max) 1 else 0)
   }
 
-  def cumulativePointsStream(reindeers: List[Reindeer]): Stream[List[Int]] =
+  def cumulativePointsStream(reindeers: List[Reindeer]): LazyList[List[Int]] =
     cumulative[List[Int]](List.fill(reindeers.size)(0), merge)(pointsStream(reindeers))
 
   def merge(a: List[Int], b: List[Int]): List[Int] =
     (a zip b).map { case (x, y) => x + y }
 
-  def merge[A](streams: List[Stream[A]]): Stream[List[A]] =
-    Stream.from(0).map(i => streams.map(_(i)))
+  def merge[A](streams: List[LazyList[A]]): LazyList[List[A]] =
+    LazyList.from(0).map(i => streams.map(_(i)))
 }

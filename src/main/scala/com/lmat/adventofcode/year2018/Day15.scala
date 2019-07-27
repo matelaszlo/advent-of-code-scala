@@ -63,7 +63,7 @@ object Day15 extends SimpleCommonPuzzle[CombatMap, Int, Int] {
   }
 
   def simulateCombat(combatMap: CombatMap): CombatState =
-    Stream.iterate((combatMap, 0, false))(simulateRound).find(isFinished).get
+    LazyList.iterate((combatMap, 0, false))(simulateRound).find(isFinished).get
 
   def simulateRound(combat: CombatState): CombatState = {
     val (combatMap, round, _) = combat
@@ -161,31 +161,31 @@ object Day15 extends SimpleCommonPuzzle[CombatMap, Int, Int] {
     * Notice how we pre collected all the reachable targets and iterate only until we found all the ones that are at most as far as the first found correct one
     */
   def findGoal(combatMap: CombatMap, from: Coordinates)(targets: Set[Coordinates]): Coordinates = {
-    def streamSearch(initial: Stream[(Coordinates, Int)], explored: Set[Coordinates]): Stream[(Coordinates, Int)] = initial match {
+    def streamSearch(initial: LazyList[(Coordinates, Int)], explored: Set[Coordinates]): LazyList[(Coordinates, Int)] = initial match {
       case (c, i) #:: rest if targets.contains(c) =>
-        Stream((c, i)) #::: streamSearch(rest, explored).takeWhile{case (_, i2) => i2 == i}
+        LazyList((c, i)) #::: streamSearch(rest, explored).takeWhile{case (_, i2) => i2 == i}
       case (c, i) #:: rest =>
         val more = emptyNewNeighbours(combatMap, explored)(c).map((_, i + 1))
-        streamSearch(rest #::: more.toStream, explored ++ more.map(_._1))
-      case _ => Stream()
+        streamSearch(rest #::: more.to(LazyList), explored ++ more.map(_._1))
+      case _ => LazyList()
     }
-    streamSearch(Stream((from, 0)), Set()).minBy { case ((x, y), d) => (d, y, x) }._1
+    streamSearch(LazyList((from, 0)), Set()).minBy { case ((x, y), d) => (d, y, x) }._1
   }
 
   /**
     * As long as we generate the next possible coordinates in reading order we will find the correct solution even when there are multiple shortest paths
     */
   def shortestPath(combatMap: CombatMap, from: Coordinates)(target: Coordinates): Seq[Coordinates] = {
-        def streamSearch(initial: Stream[List[Coordinates]], explored: Set[Coordinates]): Stream[List[Coordinates]] = initial match {
+        def streamSearch(initial: LazyList[List[Coordinates]], explored: Set[Coordinates]): LazyList[List[Coordinates]] = initial match {
           case (current :: path) #:: _ if current == target =>
-            Stream(current :: path)
+            LazyList(current :: path)
           case (current :: path) #:: rest =>
             val more = emptyNewNeighbours(combatMap, explored)(current).map(_ :: current :: path)
-            streamSearch(rest #::: more.toStream, explored ++ more.flatten)
-          case _ => Stream()
+            streamSearch(rest #::: more.to(LazyList), explored ++ more.flatten)
+          case _ => LazyList()
         }
 
-    streamSearch(Stream(List(from)), Set()).find(_.head == target).map(_.reverse).get
+    streamSearch(LazyList(List(from)), Set()).find(_.head == target).map(_.reverse).get
   }
 
   def emptyNewNeighbours(combatMap: CombatMap, explored: Set[Coordinates])(coordinates: Coordinates): List[Coordinates] =
@@ -264,7 +264,7 @@ object Day15 extends SimpleCommonPuzzle[CombatMap, Int, Int] {
   override def part2(combatMap: CombatMap): Int = {
     printCombatState(combatMap, 0)
 
-    val elvesWinWithoutLosses = Stream.from(3).map(attack => {
+    val elvesWinWithoutLosses = LazyList.from(3).map(attack => {
       val result = simulateCombat(combatMap, attack)
       printCombatState(result._1, result._2, Some(attack))
       result

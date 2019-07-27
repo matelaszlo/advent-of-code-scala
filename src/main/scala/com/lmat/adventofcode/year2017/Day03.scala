@@ -19,7 +19,7 @@ object Day03 extends SimpleCommonPuzzle[Int, Int, Int] {
   override def part1(input: Int): Int =
     if (input == 1) 0
     else {
-      val ring = Stream.from(3, 2).map(createRing).find(ring => ring.min <= input && input <= ring.max).get
+      val ring = LazyList.from(3, 2).map(createRing).find(ring => ring.min <= input && input <= ring.max).get
       val middles = calculateMiddles(ring)
       ring.num + middles.map(middle => Math.abs(middle - input)).min
     }
@@ -37,7 +37,7 @@ object Day03 extends SimpleCommonPuzzle[Int, Int, Int] {
     Ring((base - 1) / 2, base, Math.pow(base - 2, 2).toInt + 1, Math.pow(base, 2).toInt)
 
   def calculateMiddles(ring: Ring): Seq[Int] =
-    Stream.from(ring.min + ring.num - 1, 2 * ring.num).take(4).toList
+    LazyList.from(ring.min + ring.num - 1, 2 * ring.num).take(4).toList
 
   /**
     * Algorithm:
@@ -55,7 +55,7 @@ object Day03 extends SimpleCommonPuzzle[Int, Int, Int] {
   case class Square(position: Position, value: Int)
 
   def initial: Square = Square(Position(0, 0), 1)
-  def squares: Stream[Square] = Stream.iterate(Seq(initial))(next).map(_.head)
+  def squares: LazyList[Square] = LazyList.iterate(Seq(initial))(next).map(_.head)
 
   def next(squares: Seq[Square]): Seq[Square] = {
     val pos = nextPosition(squares.map(_.position))

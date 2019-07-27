@@ -3,6 +3,7 @@ package com.lmat.adventofcode.year2017
 import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.adventofcode.year2017.Day07Definitions._
 import com.lmat.util.Files.readResource
+import scala.language.postfixOps
 
 object Day07Definitions {
   case class TowerDefinition(name: String, weight: Int, children: Set[String])
