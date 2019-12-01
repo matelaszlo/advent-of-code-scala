@@ -75,6 +75,7 @@ object Day19 extends SimpleCommonPuzzle[Map[Position, Tile], String, Int] {
       case (_,        "up")    => goUp
       case (_,        "left")  => goLeft
       case (_,        "right") => goRight
+      case (_,        _)       => throw new IllegalArgumentException("Wrong state")
     }
   }
 

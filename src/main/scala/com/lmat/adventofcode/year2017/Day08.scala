@@ -60,6 +60,7 @@ object Day08 extends SimpleCommonPuzzle[Seq[Instruction], Int, Int] {
     case (_,     false) => registerState
     case ("inc", true)  => registerState.inc(instruction.register, instruction.amount)
     case ("dec", true)  => registerState.dec(instruction.register, instruction.amount)
+    case (_,     true)  => throw new IllegalArgumentException("Wrong operation")
   }
 
   def evaluateCondition(registerState: RegisterState, condition: Condition): Boolean = condition.comparison match {

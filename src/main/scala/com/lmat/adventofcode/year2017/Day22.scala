@@ -66,6 +66,7 @@ object Day22 extends SimpleCommonPuzzle[Map[Position, String], Int, Int] {
     case ("left", "right")    => "up"
     case ("left", "no")       => "left"
     case ("left", "reverse")  => "right"
+    case (_,        _)        => throw new IllegalArgumentException("Wrong state")
   }
 
   def move(position: Position, facing: String): Position = facing match {
