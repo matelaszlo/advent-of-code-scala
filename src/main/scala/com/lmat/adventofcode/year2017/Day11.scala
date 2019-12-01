@@ -5,7 +5,7 @@ import com.lmat.util.Files.readResource
 
 object Day11 extends SimpleCommonPuzzle[Seq[String], Int, Int] {
   override def parse(resource: String): Seq[String] =
-    readResource(resource).head.split(",")
+    readResource(resource).head.split(",").toIndexedSeq
 
   case class CubeCoordinates(x: Int, y: Int, z: Int)
 

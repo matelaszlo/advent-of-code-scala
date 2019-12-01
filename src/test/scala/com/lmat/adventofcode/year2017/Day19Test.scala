@@ -55,7 +55,7 @@ class Day19Test extends AnyFunSuite with TableDrivenPropertyChecks {
   )
 
   test("Parse") {
-    assert(parseMap(rawMap.drop(1).split("\n").map(_.toCharArray.toSeq)) == mapDefinitions)
+    assert(parseMap(rawMap.drop(1).split("\n").toIndexedSeq.map(_.toIndexedSeq)) == mapDefinitions)
   }
 
   test("Day19 - Part 1") {

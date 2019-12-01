@@ -36,7 +36,7 @@ class Day25Test extends AnyFunSuite with TableDrivenPropertyChecks {
   )
 
   test("Parse") {
-    assert(parseInstructions(rawConfig.split("\n")) == config)
+    assert(parseInstructions(rawConfig.split("\n").toIndexedSeq) == config)
   }
 
   test("Day 25 - Part 1") {

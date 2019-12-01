@@ -15,7 +15,7 @@ object Day01 extends SimpleCommonPuzzle[String, Int, Int] {
     solveCaptcha(captcha.length / 2)(captcha)
 
   def solveCaptcha(shiftAmount: Int)(captcha: String): Int = {
-    val digits  = captcha.toCharArray.map(_.asDigit)
+    val digits  = captcha.toIndexedSeq.map(_.asDigit)
     val shifted = shiftRight(digits, shiftAmount)
     sumEqualDigits(digits, shifted)
   }

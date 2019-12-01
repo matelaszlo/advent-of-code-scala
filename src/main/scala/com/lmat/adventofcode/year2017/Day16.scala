@@ -14,7 +14,7 @@ object Day16Definitions {
 
 object Day16 extends SimpleCommonPuzzle[Seq[Move], String, String] {
   override def parse(resource: String): Seq[Move] =
-    readResource(resource).head.split(",").flatMap(parseMove)
+    readResource(resource).head.split(",").toIndexedSeq.flatMap(parseMove)
 
   def parseMove(source: String): Option[Move] = {
     val spinTest     = """s(.+)""".r

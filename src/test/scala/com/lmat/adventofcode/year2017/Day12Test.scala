@@ -24,7 +24,7 @@ class Day12Test extends AnyFunSuite with TableDrivenPropertyChecks {
     6 -> Set(4, 5))
 
   test("Parse input") {
-    assert(parseProgramMap(input.split("\n")) == programMap)
+    assert(parseProgramMap(input.split("\n").toIndexedSeq) == programMap)
   }
 
   test("Day 12 - Part 1 - Connected to") {

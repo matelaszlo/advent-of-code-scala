@@ -19,7 +19,7 @@ object Day21 extends SimpleCommonPuzzle[Set[Rule], Int, Int]{
     Matrix(matrix.map(_.map(_ == '#').toVector).toVector)
 
   def buildPattern(pattern: String): Pattern =
-    buildPattern(pattern.split("/").map(_.toCharArray.toSeq))
+    buildPattern(pattern.split("/").map(_.toIndexedSeq).toIndexedSeq)
 
   def parseRule(row: String): Rule = {
     val parts = row.split(" => ")

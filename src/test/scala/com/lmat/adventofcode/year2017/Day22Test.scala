@@ -19,7 +19,7 @@ class Day22Test extends AnyFunSuite with TableDrivenPropertyChecks {
   )
 
   test("Parse") {
-    assert(parseMap(rawGrid.split("\n").map(_.toCharArray.toSeq)) == grid)
+    assert(parseMap(rawGrid.split("\n").toIndexedSeq.map(_.toIndexedSeq)) == grid)
   }
 
   val viruses =

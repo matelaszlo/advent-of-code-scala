@@ -15,7 +15,7 @@ class Day02Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   test("Parse") {
     forAll(raws) { (raw, spreadsheet) =>
-      assert(parseSpreadsheet(raw.split("\n")) == spreadsheet)
+      assert(parseSpreadsheet(raw.split("\n").toIndexedSeq) == spreadsheet)
     }
   }
 

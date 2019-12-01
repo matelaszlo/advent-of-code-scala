@@ -9,12 +9,12 @@ object Day10 extends SimpleMultiPuzzle[Seq[Int], Int, Seq[Int], String] {
   val size   = 256
   val rounds = 64
 
-  override def parse1(resource: String): Seq[Int] = readResource(resource).head.split(",").map(_.toInt)
+  override def parse1(resource: String): Seq[Int] = readResource(resource).head.split(",").map(_.toInt).toIndexedSeq
 
   override def parse2(resource: String): Seq[Int] = calculateLengths(readResource(resource).head)
 
   def calculateLengths(source:String): Seq[Int] =
-    source.toCharArray.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
+    source.toIndexedSeq.map(_.toInt) ++ Seq(17, 31, 73, 47, 23)
 
   override def part1(lengths: Seq[Int]): Int =
     knotHashRound(initialState(size), lengths)

@@ -10,7 +10,7 @@ object Day24Definitions {
   }
 
   object Component {
-    def apply(source: String)  : Component = Component(source.split("/").map(string => string.toInt))
+    def apply(source: String)  : Component = Component(source.split("/").toIndexedSeq.map(string => string.toInt))
     def apply(p1: Int, p2: Int): Component = Component(Seq(p1, p2))
   }
 

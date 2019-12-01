@@ -19,7 +19,7 @@ class Day13Test extends AnyFunSuite with TableDrivenPropertyChecks {
   )
 
   test("Parse input") {
-    assert(parseLayers(input.split("\n")) == layers)
+    assert(parseLayers(input.split("\n").toIndexedSeq) == layers)
   }
 
   val examples =

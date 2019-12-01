@@ -17,13 +17,13 @@ class Day11Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   test("Day 11 - Part 1") {
     forAll(directions) { (direction, distance, _) =>
-      assert(part1(direction.split(",")) == distance)
+      assert(part1(direction.split(",").toIndexedSeq) == distance)
     }
   }
 
   test("Day 11 - Part 2") {
     forAll(directions) { (direction, _, furthest) =>
-      assert(part2(direction.split(",")) == furthest)
+      assert(part2(direction.split(",").toIndexedSeq) == furthest)
     }
   }
 }
