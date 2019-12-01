@@ -70,7 +70,7 @@ object Json {
       case _ +: rest                           => findSplitPoints(rest, points,          index + 1, count)
     }
 
-    val points = findSplitPoints(source.toCharArray, Seq(), 0, 0)
+    val points = findSplitPoints(source.toIndexedSeq, Seq(), 0, 0)
     (-1 +: points).zip(points :+ source.length).map{
       case (from, to) => source.substring(from + 1, to)
     }

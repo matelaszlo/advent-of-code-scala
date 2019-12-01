@@ -23,7 +23,7 @@ object Day11 extends SimpleCommonPuzzle[String, String, String] {
     runOfAtLeast(3)(password) && noneOf(Seq('i', 'o', 'l'))(password) && differentDoubles(2)(password)
 
   def runOfAtLeast(n: Int)(string: String): Boolean =
-    string.sliding(n).exists(isRun)
+    string.toSeq.sliding(n).map(_.unwrap).exists(isRun)
 
   def isRun(string: String): Boolean =
     (string zip string.drop(1)).forall { case (l, r) => r - l == 1 }

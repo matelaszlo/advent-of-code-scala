@@ -71,7 +71,7 @@ class Day18Test extends AnyFunSuite with TableDrivenPropertyChecks {
     ),6)
 
   test("Day18 - Parse") {
-    assert(parseGrid(rawGrid.split("\n")) == grid)
+    assert(parseGrid(rawGrid.split("\n").toIndexedSeq) == grid)
   }
 
   test("Day18 - Next") {
