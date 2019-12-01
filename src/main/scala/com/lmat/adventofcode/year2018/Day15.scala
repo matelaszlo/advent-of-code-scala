@@ -32,7 +32,7 @@ object Day15 extends SimpleCommonPuzzle[CombatMap, Int, Int] {
   override def parse(resource: String): CombatMap = parseCombatState(readResource(resource))
 
   def parseCombatState(string: String): CombatMap =
-    parseCombatState(string.split("\n"))
+    parseCombatState(string.split("\n").toIndexedSeq)
 
   def parseCombatState(rows: Seq[String]): CombatMap = {
     def parseRow(rowIndex: Int)(row: String): Seq[(Coordinates, Tile)] =

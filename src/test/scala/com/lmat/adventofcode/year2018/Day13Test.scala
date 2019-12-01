@@ -29,7 +29,7 @@ class Day13Test extends AnyFunSuite with TableDrivenPropertyChecks {
     Cart((9, 3), Down, TurnLeft))
 
   test("Day13 - Parse") {
-    val (parsedTracks, parsedCarts) = parseInput(rawInput.split("\n"))
+    val (parsedTracks, parsedCarts) = parseInput(rawInput.split("\n").toIndexedSeq)
     assert(parsedTracks == tracks)
     assert(parsedCarts == carts)
   }
@@ -48,7 +48,7 @@ class Day13Test extends AnyFunSuite with TableDrivenPropertyChecks {
   }
 
   test("Day13 - Part 2") {
-    val (parsedTracks, parsedCarts) = parseInput(rawInput2.split("\n"))
+    val (parsedTracks, parsedCarts) = parseInput(rawInput2.split("\n").toIndexedSeq)
     assert(part2((parsedTracks, parsedCarts)) == "6,4")
   }
 }

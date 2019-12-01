@@ -34,7 +34,7 @@ object Day16 extends SimpleCommonPuzzle[Input, Int, Int] {
   def parseState(row: String, time: String): Option[Seq[Int]] = {
     val pattern = s"$time:.*?\\[(.*?)\\]".r
     row match {
-      case pattern(valuesS) => Some(valuesS.split(", ").flatMap(s => Try(s.toInt).toOption))
+      case pattern(valuesS) => Some(valuesS.split(", ").toIndexedSeq.flatMap(s => Try(s.toInt).toOption))
       case _ => None
     }
   }

@@ -70,7 +70,7 @@ object Day04 extends CommonPuzzle[Seq[Note], Map[Int, Seq[SleepSchedule]], Int, 
 
   override def part2(sleepScheduleMap: Map[Int, Seq[SleepSchedule]]): Int = {
     // Find the most frequently asleep minute per guard
-    val mostFrequentMinuteMap = sleepScheduleMap.mapValues(sleepSchedules => countElements(sleepSchedules.flatMap(_.minutesAsleep)).maxBy(_._2))
+    val mostFrequentMinuteMap = sleepScheduleMap.view.mapValues(sleepSchedules => countElements(sleepSchedules.flatMap(_.minutesAsleep)).maxBy(_._2))
     // Find the most frequent minute and guard globally
     val (id, (minute, _)) = mostFrequentMinuteMap.maxBy(_._2._2)
     id * minute

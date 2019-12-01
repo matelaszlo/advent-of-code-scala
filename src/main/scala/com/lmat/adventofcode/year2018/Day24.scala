@@ -37,13 +37,13 @@ object Day24 extends SimpleCommonPuzzle[GroupConfiguration, Int, Int] {
 
     row match {
       case pattern5(unitsS, hitPointsS, immunitiesS, weaknessesS, attackS, attackType, initiativeS) =>
-        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", "), immunitiesS.split(", "))
+        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", ").toIndexedSeq, immunitiesS.split(", ").toIndexedSeq)
       case pattern4(unitsS, hitPointsS, weaknessesS, immunitiesS, attackS, attackType, initiativeS) =>
-        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", "), immunitiesS.split(", "))
+        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", ").toIndexedSeq, immunitiesS.split(", ").toIndexedSeq)
       case pattern3(unitsS, hitPointsS, immunitiesS, attackS, attackType, initiativeS) =>
-        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, Seq(), immunitiesS.split(", "))
+        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, Seq(), immunitiesS.split(", ").toIndexedSeq)
       case pattern2(unitsS, hitPointsS, weaknessesS, attackS, attackType, initiativeS) =>
-        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", "), Seq())
+        parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, weaknessesS.split(", ").toIndexedSeq, Seq())
       case pattern1(unitsS, hitPointsS, attackS, attackType, initiativeS) =>
         parseGroup(unitsS, hitPointsS, attackS, attackType, initiativeS, Seq(), Seq())
       case _ => None

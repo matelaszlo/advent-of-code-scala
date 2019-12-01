@@ -44,7 +44,7 @@ class Day12Test extends AnyFunSuite with TableDrivenPropertyChecks {
       Rule(Seq(true,  true,  true,  true,  false), true)))
 
   test("Day12 - Parse") {
-    assert(parseInput(rawInput.split("\n")) == rawConfiguration)
+    assert(parseInput(rawInput.split("\n").toIndexedSeq) == rawConfiguration)
   }
 
   val configuration = (

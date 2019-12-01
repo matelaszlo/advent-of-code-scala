@@ -5,7 +5,6 @@ import org.scalatest.prop.TableDrivenPropertyChecks
 import com.lmat.adventofcode.year2018.Day24Definitions._
 import com.lmat.adventofcode.year2018.Day24._
 
-
 class Day24Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawGroupConfiguration =
@@ -25,7 +24,7 @@ class Day24Test extends AnyFunSuite with TableDrivenPropertyChecks {
   )
 
   test("Day24 - Parse") {
-    assert(parseGroupConfiguration(rawGroupConfiguration.split("\n")) == groupConfiguration)
+    assert(parseGroupConfiguration(rawGroupConfiguration.split("\n").toIndexedSeq) == groupConfiguration)
   }
 
   test("Day24 - Part 1") {

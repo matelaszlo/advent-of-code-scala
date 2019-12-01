@@ -17,7 +17,7 @@ object Day12 extends CommonPuzzle[RawConfiguration, Configuration, Int, Long] {
     def parseInitial(row: String): Option[Seq[Boolean]] = {
       val pattern = "initial state: (.*?)".r
       row match {
-        case pattern(initialS) => Some(initialS.toCharArray.map(_ == '#'))
+        case pattern(initialS) => Some(initialS.toIndexedSeq.map(_ == '#'))
         case _ => None
       }
     }
@@ -25,7 +25,7 @@ object Day12 extends CommonPuzzle[RawConfiguration, Configuration, Int, Long] {
     def parseRule(row: String): Option[Rule] = {
       val pattern = "(.*?) => (.)".r
       row match {
-        case pattern(fromS, toS) => Some(Rule(fromS.toCharArray.map(_ == '#'), toS.head == '#'))
+        case pattern(fromS, toS) => Some(Rule(fromS.toIndexedSeq.map(_ == '#'), toS.head == '#'))
         case _ => None
       }
     }
