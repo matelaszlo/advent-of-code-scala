@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2018
 
 import com.lmat.adventofcode.year2018.Day07._
 import com.lmat.adventofcode.year2018.Day07Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day07Test extends FunSuite with TableDrivenPropertyChecks {
+class Day07Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawInstructions =
     """Step C must be finished before step A can begin.

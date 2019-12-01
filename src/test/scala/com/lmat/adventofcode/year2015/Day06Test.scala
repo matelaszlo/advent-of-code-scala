@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day06._
 import com.lmat.adventofcode.year2015.Day06Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day06Test extends FunSuite with TableDrivenPropertyChecks {
+class Day06Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val instructions = Seq(
     Instruction("turn on",  Point(0, 0),     Point(999, 999)),
     Instruction("toggle",   Point(0, 0),     Point(999, 0)),

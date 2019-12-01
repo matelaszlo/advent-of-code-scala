@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day20.{parseParticle, part1, part2}
 import com.lmat.adventofcode.year2017.Day20Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day20Test extends FunSuite with TableDrivenPropertyChecks {
+class Day20Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawParticles =
     """p=<3,0,0>, v=<2,0,0>, a=<-1,0,0>
       |p=<4,0,0>, v=<0,0,0>, a=<-2,0,0>

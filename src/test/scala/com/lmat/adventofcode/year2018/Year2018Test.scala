@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2018
 
 import com.lmat.adventofcode.PuzzleRunner.{puzzleMap, resource}
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Year2018Test extends FunSuite with TableDrivenPropertyChecks {
+class Year2018Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val puzzles =
     Table(

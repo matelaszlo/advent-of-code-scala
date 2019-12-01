@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day22._
 import com.lmat.adventofcode.year2015.Day22Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day22Test extends FunSuite with TableDrivenPropertyChecks {
+class Day22Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val effectTests =
     Table(
       ("player",          "boss",            "effects",                                "playerAfter",      "bossAfter",       "effectsAfter"),

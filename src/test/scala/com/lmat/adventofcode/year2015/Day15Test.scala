@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day15._
 import com.lmat.adventofcode.year2015.Day15Definitions.Ingredient
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day15Test extends FunSuite with TableDrivenPropertyChecks {
+class Day15Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawIngredients =
     """Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8

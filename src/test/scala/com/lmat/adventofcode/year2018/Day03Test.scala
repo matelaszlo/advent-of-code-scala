@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2018
 
 import com.lmat.adventofcode.year2018.Day03Definitions._
 import com.lmat.adventofcode.year2018.Day03._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day03Test extends FunSuite with TableDrivenPropertyChecks {
+class Day03Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawClaims =
     s"""#1 @ 1,3: 4x4
        |#2 @ 3,1: 4x4

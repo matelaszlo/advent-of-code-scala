@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2019
 
 import com.lmat.adventofcode.year2019.Day01._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day01Test extends FunSuite with TableDrivenPropertyChecks {
+class Day01Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val masses =
     Table(
       ("mass", "result", "result2"),

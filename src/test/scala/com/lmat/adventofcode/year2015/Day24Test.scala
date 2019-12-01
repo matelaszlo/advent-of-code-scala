@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day24._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day24Test extends FunSuite with TableDrivenPropertyChecks {
+class Day24Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val packages = Set(1, 2, 3, 4, 5, 7, 8, 9, 10, 11)
 
   test("Day24 - Parts") {

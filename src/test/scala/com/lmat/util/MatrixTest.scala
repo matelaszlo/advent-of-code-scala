@@ -1,9 +1,9 @@
 package com.lmat.util
 
 import com.lmat.util.Matrix._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class MatrixTest extends FunSuite {
+class MatrixTest extends AnyFunSuite {
   val matrix: Matrix[Int] = Matrix(Vector(
     Vector(0,  1,  2,  3),
     Vector(4,  5,  6,  7),

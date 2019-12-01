@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day17.{State, nextBuffer, nextState}
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day17Test extends FunSuite with TableDrivenPropertyChecks {
+class Day17Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val testStates = Seq(
     (State(0, 0), List(0)),
     (State(1, 1), List(0, 1)),

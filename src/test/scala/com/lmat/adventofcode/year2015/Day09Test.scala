@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day09Definitions.Distance
 import com.lmat.adventofcode.year2015.Day09._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day09Test extends FunSuite with TableDrivenPropertyChecks {
+class Day09Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val distances = Seq(
     Distance("London", "Dublin", 464),

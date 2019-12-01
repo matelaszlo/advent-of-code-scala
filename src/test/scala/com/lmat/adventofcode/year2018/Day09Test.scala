@@ -1,12 +1,12 @@
 package com.lmat.adventofcode.year2018
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 import com.lmat.adventofcode.year2018.Day09Definitions._
 import com.lmat.adventofcode.year2018.Day09._
 
 
-class Day09Test extends FunSuite with TableDrivenPropertyChecks {
+class Day09Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val games =
     Table(
       ("gameDefinition",          "maxScore"),

@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day25._
 import com.lmat.adventofcode.year2017.Day25Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day25Test extends FunSuite with TableDrivenPropertyChecks {
+class Day25Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawConfig =
     """Begin in state A.
       |Perform a diagnostic checksum after 6 steps.

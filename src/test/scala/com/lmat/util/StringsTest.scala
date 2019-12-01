@@ -1,10 +1,10 @@
 package com.lmat.util
 
 import com.lmat.util.Strings._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class StringsTest extends FunSuite with TableDrivenPropertyChecks {
+class StringsTest extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val stringsForPadding =
     Table(

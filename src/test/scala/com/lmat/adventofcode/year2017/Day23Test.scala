@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day23.parseInstruction
 import com.lmat.adventofcode.year2017.Day23Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day23Test extends FunSuite with TableDrivenPropertyChecks {
+class Day23Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawInstructions =
     """set b 99
       |set c b

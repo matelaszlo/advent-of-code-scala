@@ -1,9 +1,9 @@
 package com.lmat.util
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class JsonTest extends FunSuite with TableDrivenPropertyChecks {
+class JsonTest extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val examples =
     Table(

@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day08._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day08Test extends FunSuite with TableDrivenPropertyChecks {
+class Day08Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val raw =
     """""

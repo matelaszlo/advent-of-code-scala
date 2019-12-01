@@ -1,9 +1,9 @@
 package com.lmat.util
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class TraverseTest extends FunSuite with TableDrivenPropertyChecks {
+class TraverseTest extends AnyFunSuite with TableDrivenPropertyChecks {
   val examples =
     Table(
       ("elements",                     "result"),

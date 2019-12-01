@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day13._
 import com.lmat.adventofcode.year2015.Day13Definitions.HappinessChange
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day13Test extends FunSuite with TableDrivenPropertyChecks {
+class Day13Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawChanges =
     """Alice would gain 54 happiness units by sitting next to Bob.

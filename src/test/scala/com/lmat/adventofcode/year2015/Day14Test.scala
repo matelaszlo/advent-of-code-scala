@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day14._
 import com.lmat.adventofcode.year2015.Day14Definitions.Reindeer
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day14Test extends FunSuite with TableDrivenPropertyChecks {
+class Day14Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawReindeers =
     """Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.

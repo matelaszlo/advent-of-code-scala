@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day03._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day03Test extends FunSuite with TableDrivenPropertyChecks {
+class Day03Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val directions =
     Table(
       ("directions", "simple", "with-robo"),

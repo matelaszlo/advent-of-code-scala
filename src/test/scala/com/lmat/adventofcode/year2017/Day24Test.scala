@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day24._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import com.lmat.adventofcode.year2017.Day24Definitions._
 
-class Day24Test extends FunSuite {
+class Day24Test extends AnyFunSuite {
 
   test("End Connection") {
     assert(Bridge(Seq(), 0).endConnection == 0)

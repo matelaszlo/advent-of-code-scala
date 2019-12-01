@@ -4,10 +4,10 @@ import java.time.{LocalDate, LocalDateTime, Month}
 
 import com.lmat.adventofcode.year2018.Day04._
 import com.lmat.adventofcode.year2018.Day04Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day04Test extends FunSuite with TableDrivenPropertyChecks {
+class Day04Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawNotes =
     s"""[1518-11-01 00:00] Guard #10 begins shift
        |[1518-11-01 00:05] falls asleep

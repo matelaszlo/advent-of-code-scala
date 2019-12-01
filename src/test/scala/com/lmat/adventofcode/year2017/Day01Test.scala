@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day01.solveCaptcha
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day01Test extends FunSuite with TableDrivenPropertyChecks {
+class Day01Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val captchas =
     Table(
       ("captcha",   "result"),

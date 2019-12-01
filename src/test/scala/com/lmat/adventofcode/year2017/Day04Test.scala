@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day04.{hasNoAnagrams, hasOnlyUniqueWords}
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day04Test extends FunSuite with TableDrivenPropertyChecks {
+class Day04Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val examples =
     Table(
       ("input",           "isValid"),

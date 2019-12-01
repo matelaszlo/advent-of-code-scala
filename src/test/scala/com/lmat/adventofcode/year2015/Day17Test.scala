@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day17._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day17Test extends FunSuite with TableDrivenPropertyChecks {
+class Day17Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val containers = List(20, 15, 10, 5, 5)
 

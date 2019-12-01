@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2015
 
 import com.lmat.adventofcode.year2015.Day19._
 import com.lmat.adventofcode.year2015.Day19Definitions._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day19Test extends FunSuite with TableDrivenPropertyChecks {
+class Day19Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val rawGenetics =
     """H => HO
       |H => OH

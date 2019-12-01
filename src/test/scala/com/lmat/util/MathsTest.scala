@@ -1,10 +1,10 @@
 package com.lmat.util
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 import com.lmat.util.Maths._
 
-class MathsTest extends FunSuite with TableDrivenPropertyChecks {
+class MathsTest extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val numbers =
     Table(

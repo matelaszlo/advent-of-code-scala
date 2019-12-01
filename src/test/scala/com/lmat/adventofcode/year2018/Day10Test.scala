@@ -2,10 +2,10 @@ package com.lmat.adventofcode.year2018
 
 import com.lmat.adventofcode.year2018.Day10Definitions._
 import com.lmat.adventofcode.year2018.Day10._
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day10Test extends FunSuite with TableDrivenPropertyChecks {
+class Day10Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawPoints =
     """position=< 9,  1> velocity=< 0,  2>

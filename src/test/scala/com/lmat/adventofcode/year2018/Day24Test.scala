@@ -1,12 +1,12 @@
 package com.lmat.adventofcode.year2018
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 import com.lmat.adventofcode.year2018.Day24Definitions._
 import com.lmat.adventofcode.year2018.Day24._
 
 
-class Day24Test extends FunSuite with TableDrivenPropertyChecks {
+class Day24Test extends AnyFunSuite with TableDrivenPropertyChecks {
 
   val rawGroupConfiguration =
     """Immune System:

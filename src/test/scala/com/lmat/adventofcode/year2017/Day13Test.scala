@@ -1,10 +1,10 @@
 package com.lmat.adventofcode.year2017
 
 import com.lmat.adventofcode.year2017.Day13.{parseLayers, part1, part2}
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.prop.TableDrivenPropertyChecks
 
-class Day13Test extends FunSuite with TableDrivenPropertyChecks {
+class Day13Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val input =
     """0: 3
       |1: 2
