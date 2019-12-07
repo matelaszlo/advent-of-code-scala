@@ -2,6 +2,7 @@ package com.lmat.adventofcode.year2019
 
 import com.lmat.adventofcode.SimpleCommonPuzzle
 import com.lmat.util.Files.readResource
+import com.lmat.util.Logic._
 
 import scala.util.Try
 
@@ -22,10 +23,10 @@ object Day04 extends SimpleCommonPuzzle[(Int, Int), Int, Int]{
   }
 
   override def part1(range: (Int, Int)): Int =
-    solve(range, and(List(hasTwoAdjacent, monotonicallyIncreasing)))
+    solve(range, and(hasTwoAdjacent, monotonicallyIncreasing))
 
   override def part2(range: (Int, Int)): Int =
-    solve(range, and(List(hasTwoStandAloneAdjacent, monotonicallyIncreasing)))
+    solve(range, and(hasTwoStandAloneAdjacent, monotonicallyIncreasing))
 
   def solve(range: (Int, Int), isValid: List[Int] => Boolean): Int = {
     val (from, to) = range
@@ -35,14 +36,8 @@ object Day04 extends SimpleCommonPuzzle[(Int, Int), Int, Int]{
   def toDigits(n: Int): List[Int] =
     n.toString.toCharArray.map(_.asDigit).toList
 
-  def and[A](fs: List[A => Boolean]): A => Boolean =
-    fs.reduce[A => Boolean]{ case (f1, f2) => n => f1(n) && f2(n) }
-
-  def or[A](fs: List[A => Boolean]): A => Boolean =
-    fs.reduce[A => Boolean]{ case (f1, f2) => n => f1(n) || f2(n) }
-
   def hasTwoAdjacent(seq: List[Int]): Boolean =
-    seq.sliding(2).exists { case d1 :: d2 :: _ => d1 == d2 }
+    seq.sliding(2).exists { case List(d1, d2) => d1 == d2 }
 
   def hasTwoStandAloneAdjacent(seq: List[Int]): Boolean = {
     def beginning(seq: List[Int]): Boolean = seq match {
@@ -53,11 +48,11 @@ object Day04 extends SimpleCommonPuzzle[(Int, Int), Int, Int]{
     def end(seq: List[Int]): Boolean = beginning(seq.reverse)
 
     def middle(seq: List[Int]): Boolean =
-      seq.sliding(4).exists { case o1 :: d1 :: d2 :: o2 :: _ => d1 == d2 && d1 != o1 && d1 != o2 }
+      seq.sliding(4).exists { case List(o1, d1, d2, o2) => d1 == d2 && d1 != o1 && d1 != o2 }
 
-    or[List[Int]](List(beginning, middle, end))(seq)
+    or[List[Int]](beginning, middle, end)(seq)
   }
 
   def monotonicallyIncreasing(seq: List[Int]): Boolean =
-    seq.sliding(2).forall { case d1 :: d2 :: _ => d1 <= d2 }
+    seq.sliding(2).forall { case List(d1, d2) => d1 <= d2 }
 }

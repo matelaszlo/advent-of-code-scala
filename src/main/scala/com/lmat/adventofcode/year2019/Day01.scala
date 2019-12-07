@@ -18,14 +18,6 @@ object Day01 extends SimpleCommonPuzzle[Seq[Int], Int, Int] {
 
   def fuel(mass: Int): Int = (mass / 3) - 2
 
-  def fuel2(mass: Int): Int = {
-    @tailrec
-    def iterate(total: Int, current: Int): Int =
-      if(current == 0) total
-      else {
-        val f = fuel(current) max 0
-        iterate(total + f, f)
-      }
-    iterate(0, mass)
-  }
+  def fuel2(mass: Int): Int =
+    LazyList.iterate(mass)(fuel).takeWhile(_ > 0).drop(1).sum
 }
