@@ -26,6 +26,8 @@ class Year2018Test extends AnyFunSuite with TableDrivenPropertyChecks {
       (15,    243390,                       59886),
       (16,    642,                          481),
       (17,    31667,                        25018),
+      (18,    594712,                       203138),
+      (19,    1152,                         12690000),
       (24,    19974,                        4606)
     )
 
