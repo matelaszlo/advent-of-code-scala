@@ -37,6 +37,7 @@ object Day05 extends SimpleCommonPuzzle[Vector[Int], Int, Int] {
       case i if i.endsWith(List(6)) => leftPad(i)(0, 4)
       case i if i.endsWith(List(7)) => leftPad(i)(0, 5)
       case i if i.endsWith(List(8)) => leftPad(i)(0, 5)
+      case _ => throw new IllegalArgumentException("Illegal instruction")
     }
 
     def leftPad[A](source: List[A])(pad: A, size: Int): List[A] =

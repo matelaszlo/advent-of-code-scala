@@ -32,7 +32,7 @@ class Day18Test extends AnyFunSuite with TableDrivenPropertyChecks {
     (Coordinate(0,9),Ground), (Coordinate(1,9),Ground), (Coordinate(2,9),Ground), (Coordinate(3,9),LumberyYard), (Coordinate(4,9),Ground), (Coordinate(5,9),Tree), (Coordinate(6,9),Ground), (Coordinate(7,9),Ground), (Coordinate(8,9),Tree), (Coordinate(9,9),Ground))
 
   test("Parse"){
-    assert(parse(rawState.split("\n")) == state)
+    assert(parse(rawState.split("\n").toIndexedSeq) == state)
   }
 
   test("Part1"){

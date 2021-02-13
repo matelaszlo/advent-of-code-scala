@@ -37,7 +37,10 @@ object Day04 extends SimpleCommonPuzzle[(Int, Int), Int, Int]{
     n.toString.toCharArray.map(_.asDigit).toList
 
   def hasTwoAdjacent(seq: List[Int]): Boolean =
-    seq.sliding(2).exists { case List(d1, d2) => d1 == d2 }
+    seq.sliding(2).exists {
+      case List(d1, d2) => d1 == d2
+      case _ => false
+    }
 
   def hasTwoStandAloneAdjacent(seq: List[Int]): Boolean = {
     def beginning(seq: List[Int]): Boolean = seq match {
@@ -48,11 +51,17 @@ object Day04 extends SimpleCommonPuzzle[(Int, Int), Int, Int]{
     def end(seq: List[Int]): Boolean = beginning(seq.reverse)
 
     def middle(seq: List[Int]): Boolean =
-      seq.sliding(4).exists { case List(o1, d1, d2, o2) => d1 == d2 && d1 != o1 && d1 != o2 }
+      seq.sliding(4).exists {
+        case List(o1, d1, d2, o2) => d1 == d2 && d1 != o1 && d1 != o2
+        case _ => false
+      }
 
     or[List[Int]](beginning, middle, end)(seq)
   }
 
   def monotonicallyIncreasing(seq: List[Int]): Boolean =
-    seq.sliding(2).forall { case List(d1, d2) => d1 <= d2 }
+    seq.sliding(2).forall {
+      case List(d1, d2) => d1 <= d2
+      case _ => true
+    }
 }

@@ -28,7 +28,7 @@ class Day19Test extends AnyFunSuite with TableDrivenPropertyChecks {
       Instruction("seti", 9, 0, 5)))
 
   test("Parse"){
-    assert(parseProgram(rawProgram.split("\n")).get == program)
+    assert(parseProgram(rawProgram.split("\n").toIndexedSeq).get == program)
   }
 
   test("Part 1"){
