@@ -8,6 +8,7 @@ class Year2020Test extends AnyFunSuite with TableDrivenPropertyChecks {
   val puzzles =
     Table(
       ("day", "part1", "part2"),
+      (1,     980499,   200637446),
       (7,     242,      176035)
     )
 

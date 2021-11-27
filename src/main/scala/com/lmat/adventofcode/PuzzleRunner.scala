@@ -2,7 +2,7 @@ package com.lmat.adventofcode
 
 object PuzzleRunner extends App {
   val year = args.headOption.map(_.toInt).getOrElse(2020)
-  val day  = args.lift(1).map(_.toInt).getOrElse(7)
+  val day  = args.lift(1).map(_.toInt).getOrElse(1)
 
   def puzzleMap = Map(
     // 2015
@@ -90,6 +90,7 @@ object PuzzleRunner extends App {
     (2019, 6)  -> year2019.Day06,
 
     // 2020
+    (2020, 1)  -> year2020.Day01,
     (2020, 7)  -> year2020.Day07
   )
 
