@@ -11,7 +11,7 @@ My solutions to the [Advent of Code](https://adventofcode.com/) challenges
 | Day   | 2021 |      | 2020                                                            |                                                                       |
 | :---: | ---: | :--- | ---:                                                            | :---                                                                  |
 | 01    | -    | -    | [Report Repair](https://adventofcode.com/2020/day/1)            | [Solution](src/main/scala/com/lmat/adventofcode/year2020/Day01.scala) |
-| 02    | -    | -    | [Password Philosophy](https://adventofcode.com/2020/day/2)      | -                                                                     |
+| 02    | -    | -    | [Password Philosophy](https://adventofcode.com/2020/day/2)      | [Solution](src/main/scala/com/lmat/adventofcode/year2020/Day02.scala) |
 | 03    | -    | -    | [Toboggan Trajectory](https://adventofcode.com/2020/day/3)      | -                                                                     |
 | 04    | -    | -    | [Passport Processing](https://adventofcode.com/2020/day/4)      | -                                                                     |
 | 05    | -    | -    | [Binary Boarding](https://adventofcode.com/2020/day/5)          | -                                                                     |

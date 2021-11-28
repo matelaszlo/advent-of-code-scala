@@ -9,6 +9,7 @@ class Year2020Test extends AnyFunSuite with TableDrivenPropertyChecks {
     Table(
       ("day", "part1", "part2"),
       (1,     980499,   200637446),
+      (2,     483,      482),
       (7,     242,      176035)
     )
 
