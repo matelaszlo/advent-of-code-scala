@@ -26,8 +26,8 @@ class Day02Test extends AnyFunSuite {
     assert(rawCommands.split("\n").flatMap(parseCommand).toList == commands)
   }
 
-  test("move") {
-    assert(move(Position(0, 0), commands) == Position(15, 10))
+  test("move1") {
+    assert(commands.foldLeft(start)(move1) == Position(15, 10, 0))
   }
 
   test("part1") {
@@ -35,7 +35,7 @@ class Day02Test extends AnyFunSuite {
   }
 
   test("move2") {
-    assert(move2(Position2(0, 0, 0), commands) == Position2(15, 60, 10))
+    assert(commands.foldLeft(start)(move2)== Position(15, 60, 10))
   }
 
   test("part2") {

@@ -10,8 +10,7 @@ object Day02Definitions {
   case class Up(units: Int)      extends Command
   case class Down(units: Int)    extends Command
 
-  case class Position(horizontal: Int, depth: Int)
-  case class Position2(horizontal: Int, depth: Int, aim: Int)
+  case class Position(horizontal: Int, depth: Int, aim: Int)
 }
 
 object Day02 extends SimpleCommonPuzzle[List[Command], Int, Int] {
@@ -31,29 +30,25 @@ object Day02 extends SimpleCommonPuzzle[List[Command], Int, Int] {
     }
   }
 
+  val start: Position = Position(0, 0, 0)
+
   override def part1(commands: List[Command]): Int = {
-    val end = move(Position(0, 0), commands)
+    val end = commands.foldLeft(start)(move1)
     end.horizontal * end.depth
   }
 
-  def move(from: Position, commands: List[Command]): Position =
-    commands.foldLeft(from)((position, command) => move(position, command))
+  override def part2(commands: List[Command]): Int = {
+    val end = commands.foldLeft(start)(move2)
+    end.horizontal * end.depth
+  }
 
-  def move(position: Position, command: Command): Position = command match {
+  def move1(position: Position, command: Command): Position = command match {
     case Forward(units) => position.copy(horizontal = position.horizontal + units)
     case Up(units)      => position.copy(depth = position.depth - units)
     case Down(units)    => position.copy(depth = position.depth + units)
   }
 
-  override def part2(commands: List[Command]): Int = {
-    val end = move2(Position2(0, 0, 0), commands)
-    end.horizontal * end.depth
-  }
-
-  def move2(from: Position2, commands: List[Command]): Position2 =
-    commands.foldLeft(from)((position, command) => move2(position, command))
-
-  def move2(position: Position2, command: Command): Position2 = command match {
+  def move2(position: Position, command: Command): Position = command match {
     case Forward(units) => position.copy(horizontal = position.horizontal + units, depth = position.depth + (position.aim * units))
     case Up(units)      => position.copy(aim = position.aim - units)
     case Down(units)    => position.copy(aim = position.aim + units)
