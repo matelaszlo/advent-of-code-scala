@@ -17,6 +17,7 @@ class Year2021Test extends AnyFunSuite with TableDrivenPropertyChecks {
       (7,     351901,  101079875),
       (8,     514,     1012272),
       (9,     566,     891684),
+      (10,    167379,  2776842859L),
     )
 
   forAll(puzzles) { (day, part1, part2) =>
