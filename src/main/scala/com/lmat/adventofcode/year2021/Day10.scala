@@ -50,36 +50,26 @@ object Day10 extends SimpleCommonPuzzle[List[String], Int, Long]{
   def scoreIncomplete(completion: String): Long =
     completion.toCharArray.foldLeft(0L)((score, current) => score * 5 + scoreIncomplete(current))
 
-  def scoreIllegal(char: Char): Int = char match {
-    case ')' => 3
-    case ']' => 57
-    case '}' => 1197
-    case '>' => 25137
-    case _   => 0
-  }
+  lazy val chunks = Map(
+    '(' -> ')',
+    '[' -> ']',
+    '{' -> '}',
+    '<' -> '>'
+  )
 
-  def scoreIncomplete(char: Char): Int = char match {
-    case ')' => 1
-    case ']' => 2
-    case '}' => 3
-    case '>' => 4
-    case _   => 0
-  }
+  lazy val scores = Map(
+    ')' -> (3,     1),
+    ']' -> (57,    2),
+    '}' -> (1197,  3),
+    '>' -> (25137, 4)
+  )
 
-  def isOpening(char: Char): Boolean =
-    Set('(', '[', '{', '<').contains(char)
+  def scoreIllegal(char: Char): Int = scores.get(char).map(_._1).getOrElse(0)
+  def scoreIncomplete(char: Char): Int = scores.get(char).map(_._2).getOrElse(0)
 
-  def isClosing(char: Char): Boolean =
-    Set(')', ']', '}', '>').contains(char)
+  def isOpening(char: Char): Boolean = chunks.keySet.contains(char)
+  def isClosing(char: Char): Boolean = chunks.values.toSet.contains(char)
 
-  def matches(opening: Char, closing: Char): Boolean =
-    Set(('(', ')'), ('[', ']'), ('{', '}'), ('<', '>')).contains((opening, closing))
-
-  def close(char: Char): Char = char match {
-    case '(' => ')'
-    case '[' => ']'
-    case '{' => '}'
-    case '<' => '>'
-    case _   => ' '
-  }
+  def matches(opening: Char, closing: Char): Boolean = chunks.toSet.contains((opening, closing))
+  def close(char: Char): Char = chunks.getOrElse(char, ' ')
 }
