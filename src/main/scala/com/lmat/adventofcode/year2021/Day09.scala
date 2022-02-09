@@ -11,7 +11,7 @@ object Day09 extends SimpleCommonPuzzle[Map[(Int, Int), Int], Int, Int] {
     parseHeightMap(readResource(resource))
 
   def parseHeightMap(rows: Seq[String]): Map[(Int, Int), Int] =
-    rows.map(_.split("").map(_.toInt).zipWithIndex).zipWithIndex
+    rows.map(_.toCharArray.map(_.asDigit).zipWithIndex).zipWithIndex
       .flatMap { case (row, y) => row.map { case (v, x) => ((x, y), v) } }.toMap
 
   override def part1(heightMap: Map[(Int, Int), Int]): Int =

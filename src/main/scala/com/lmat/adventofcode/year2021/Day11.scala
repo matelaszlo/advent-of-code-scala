@@ -10,7 +10,7 @@ object Day11 extends SimpleCommonPuzzle[Map[(Int, Int), Int], Int, Int] {
     parseMap(readResource(resource))
 
   def parseMap(rows: Seq[String]): Map[(Int, Int), Int] =
-    rows.map(_.split("").map(_.toInt).zipWithIndex).zipWithIndex
+    rows.map(_.toCharArray.map(_.asDigit).zipWithIndex).zipWithIndex
       .flatMap { case (row, y) => row.map { case (v, x) => ((x, y), v) } }.toMap
 
   override def part1(energyMap: Map[(Int, Int), Int]): Int =
