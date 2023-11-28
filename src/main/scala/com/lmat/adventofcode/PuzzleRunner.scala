@@ -5,7 +5,7 @@ import scala.util.Try
 object PuzzleRunner extends App {
   val year = args.headOption.map(_.toInt).getOrElse(2020)
   val day = args.lift(1).map(_.toInt).getOrElse(1)
-  lazy val puzzleMap = buildPuzzleMap(2015, 2021)
+  lazy val puzzleMap = buildPuzzleMap(2015, 2023)
   run(puzzleMap, year, day)
 
   def buildPuzzleMap(from: Int, to: Int): Map[(Int, Int), Puzzle[_, _, _, _, _, _]] = {
