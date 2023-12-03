@@ -9,6 +9,8 @@ class Year2023Test extends AnyFunSuite with TableDrivenPropertyChecks {
     Table(
       ("day", "part1", "part2"),
       (1,     55108,    56324),
+      (2,     2369,     66363),
+      (3,     536576,   75741499)
     )
 
   forAll(puzzles) { (day, part1, part2) =>
