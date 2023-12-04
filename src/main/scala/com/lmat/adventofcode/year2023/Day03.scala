@@ -63,7 +63,6 @@ object Day03 extends SimpleCommonPuzzle[Schematic, Int, Int] {
     case _ => false
   }
 
-
   override def part2(schematic: Schematic): Int = {
     collectGears(schematic).filter(isValid).map(_.parts.product).sum
   }
