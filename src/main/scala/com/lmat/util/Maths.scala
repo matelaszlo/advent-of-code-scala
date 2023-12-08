@@ -23,4 +23,25 @@ object Maths {
     val half = (1 to math.sqrt(n).toInt).filter(n % _ == 0)
     (half ++ half.map(n / _)).toSet
   }
+
+  def divisors(n: Long): Set[Long] = {
+    val half = (1L to math.sqrt(n).toLong).filter(n % _ == 0)
+    (half ++ half.map(n / _)).toSet
+  }
+
+  /**
+    * Greatest common divisor
+    */
+  def gcd(a: Long, b: Long): Long = {
+    val divA = divisors(a)
+    val divB = divisors(b)
+    divA.intersect(divB).max
+  }
+
+  /**
+    * Least common multiple
+    */
+  def lcm(a: Long, b: Long): Long =
+    Math.abs(a * b) / gcd(a, b)
+
 }
