@@ -45,16 +45,20 @@ object Day08 extends SimpleCommonPuzzle[Network, Long, Long] {
 
   case class State(currentNode: String, currentStep: Int, total: Long)
 
-  override def part1(network: Network): Long = simulate(network)("AAA", _ == "ZZZ")
+  override def part1(network: Network): Long = simulate(network)("AAA", _ == "ZZZ").total
 
+  // LCM works as there is only 1 XXZ in each cycle, the directions from an XXA and an XXZ node pair consistently the same just inverse
   override def part2(network: Network): Long = {
+    println(s"Start nodes: ${network.nodes.filter(_._1.endsWith("A"))}")
+    println(s"Possible end nodes: ${network.nodes.filter(_._1.endsWith("Z"))}")
+
     val simulations = network.nodes.keySet.filter(_.endsWith("A")).map(start => (start, simulate(network)(start, _.endsWith("Z"))))
-    println(simulations)
-    simulations.map(_._2).reduce(Maths.lcm)
+    println(s"Simulations: $simulations")
+    simulations.map(_._2.total).reduce(Maths.lcm)
   }
 
-  def simulate(network: Network)(start: String, isEnd: String => Boolean): Long =
-    LazyList.iterate(State(start, 0, 0))(next(network)).find(state => isEnd(state.currentNode)).map(_.total).getOrElse(Long.MaxValue)
+  def simulate(network: Network)(start: String, isEnd: String => Boolean): State =
+    LazyList.iterate(State(start, 0, 0))(next(network)).find(state => isEnd(state.currentNode)).get
 
   def next(network: Network)(state: State): State = {
     val nextNode = network.nodes(state.currentNode)(network.steps(state.currentStep))
