@@ -1,7 +1,7 @@
 package com.lmat.adventofcode.year2023
 
 import com.lmat.adventofcode.SimpleCommonPuzzle
-import com.lmat.adventofcode.year2023.Day03Definitions.{Tile, _}
+import com.lmat.adventofcode.year2023.Day03Definitions._
 import com.lmat.util.Files.readResource
 
 object Day03Definitions {

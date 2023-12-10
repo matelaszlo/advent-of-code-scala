@@ -9,9 +9,7 @@ object Day08Definitions {
   case class Network(steps: List[Direction], nodes: Map[String, Map[Direction, String]])
 
   sealed trait Direction
-
   case object Left extends Direction
-
   case object Right extends Direction
 
 }
