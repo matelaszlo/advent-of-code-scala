@@ -10,21 +10,14 @@ object Day10Definitions {
   case class Coordinate(x: Int, y: Int)
 
   sealed trait Tile
-
   case object Ground extends Tile
-
   case class Pipe(from: Direction, to: Direction) extends Tile
-
   case object Start extends Tile
 
   sealed trait Direction
-
   case object North extends Direction
-
   case object East extends Direction
-
   case object South extends Direction
-
   case object West extends Direction
 }
 
