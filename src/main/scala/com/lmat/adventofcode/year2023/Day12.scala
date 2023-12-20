@@ -51,10 +51,8 @@ object Day12 extends SimpleCommonPuzzle[List[Springs], Long, Long] {
   }
 
   def arrangements(springs: Springs): Long = {
-    type Cache = Map[(String, Int), Long]
-
-    def loop(conditions: List[Condition], numbers: List[Int], space: Int, cache: Cache): (Long, Cache) = {
-      val key = (print((conditions, numbers)), space)
+    def loop(conditions: List[Condition], numbers: List[Int], space: Int, cache: Map[String, Long]): (Long, Map[String, Long]) = {
+      val key = print((conditions, numbers))
 //      println(s"Looping ${print((conditions, numbers))} Space:$space Cache Size:${cache.size} ")
 
       cache.get(key) match {
